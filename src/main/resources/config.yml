@@ -10,11 +10,9 @@
 
 #_____________Checks_____________#
 Movement:
-
   IrregularPositions:
     enabled: true
     max_vl: 15
-
 
 #_____________Settings_____________#
 

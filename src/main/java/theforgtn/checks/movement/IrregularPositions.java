@@ -12,18 +12,18 @@ import theforgtn.data.PlayerData;
 
 import static java.lang.Math.abs;
 
-public class IrregularPositionsA extends Actions {
+public class IrregularPositions extends Actions {
 
 
     private double YTolerance = 2;
 
-    public IrregularPositionsA(String name, boolean enabled, boolean punishable, int max) {
+    public IrregularPositions(String name, boolean enabled, boolean punishable, int max) {
         super(name, enabled, punishable, max);
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onMove(PlayerMoveEvent event) {
-        Bukkit.broadcastMessage("IRPB elindúlt");
+
         PlayerData data = Main.getInstance().getDataManager().getDataPlayer(event.getPlayer());
         Material m = event.getPlayer().getLocation().subtract(0, 1, 0).getBlock().getType();
         float deltaY = (float) (event.getTo().getY() - event.getFrom().getY());

@@ -2,7 +2,7 @@ package theforgtn.checks;
 
 import theforgtn.Actions;
 import theforgtn.data.ConfigFile;
-import theforgtn.checks.movement.IrregularPositionsA;
+import theforgtn.checks.movement.IrregularPositions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,7 @@ public class CheckManager {
 
     public CheckManager() {
 
-        checks.add(new IrregularPositionsA("IrregularPosition A", ConfigFile.IrregularPositions_enabled, true, ConfigFile.max_vl_IrregularPositions));
+        checks.add(new IrregularPositions("IrregularPosition", ConfigFile.IrregularPositions_enabled, true, ConfigFile.max_vl_IrregularPositions));
 
     }
 

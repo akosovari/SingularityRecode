@@ -1,0 +1,43 @@
+#######################################################
+#|                                                   |#
+#|  ,---.o               |              o|           |#
+#|  `---..,---.,---..   .|    ,---.,---..|--- ,   .  |#
+#|      |||   ||   ||   ||    ,---||    ||    |   |  |#
+#|  `---'``   '`---|`---'`---'`---^`    ``---'`---|  |#
+#|             `---'                          `---'  |#
+#|                              Recode Version 17    |#
+#######################################################
+
+#_____________Checks_____________#
+Movement:
+
+  IrregularPositions:
+    enabled: true
+    max_vl: 15
+
+
+#_____________Settings_____________#
+
+#_______Prevent_______#
+Cancel:
+  # Should we enable movement / combat cancel?
+  enabled: true
+  # Above this violation level singularity will try to cancel irregular actions.
+  cancel_vl: 3
+
+#_____________Punishments_____________#
+# Enables kick when player reaches max_vl above.
+kick-enabled: false
+
+# Displayed message when kicked for detection.
+# Use minecraft color codes.
+kick-message: "&8[&5⌛&8] &7Singularity cheat detection."
+
+
+
+
+
+
+
+
+

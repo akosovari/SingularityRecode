@@ -1,0 +1,7 @@
+name: SingularityRecoded
+version: ${project.version}
+main: theforgtn.Main
+api-version: 1.17
+commands:
+  singularity:
+    description: plugin version

@@ -13,7 +13,7 @@ public class CheckManager {
 
     public CheckManager() {
         checks.add(new IrregularPositions("IrregularPosition", ConfigFile.IrregularPositions_enabled, true, ConfigFile.max_vl_IrregularPositions));
-        checks.add(new GroundSpoof("GroundSpoof", true, true, 50));
+        checks.add(new GroundSpoof("GroundSpoof", ConfigFile.GSP_enabled, true, ConfigFile.GSP_maxvl));
     }
 
     public List<Actions> getChecks() {

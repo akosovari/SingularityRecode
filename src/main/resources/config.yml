@@ -14,6 +14,12 @@ Movement:
     enabled: true
     max_vl: 15
 
+ClientData:
+  GroundSpoof:
+    enabled: true
+    damage: false
+    setback: true
+    max_vl: 10
 #_____________Settings_____________#
 
 #_______Prevent_______#

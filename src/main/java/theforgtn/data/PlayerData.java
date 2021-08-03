@@ -13,7 +13,10 @@ public class PlayerData {
     public boolean ground, clientGround;
     public int violations, airTicks, groundTicks, ping;
     public double deltaY;
-     //Velocity
+    //Universal setback position
+    public float USP_X, USP_Y, USP_Z;
+
+    //Velocity
     public float lastVelocityTaken;
     public int velXTicks;
 

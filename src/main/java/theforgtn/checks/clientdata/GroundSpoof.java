@@ -26,7 +26,7 @@ public class GroundSpoof extends Actions {
         PlayerData data = Main.getInstance().getDataManager().getDataPlayer(event.getPlayer());
         Material m = event.getPlayer().getLocation().subtract(0, 1, 0).getBlock().getType();
 
-        if (abs(abs(event.getPlayer().getLocation().getBlockX()) - data.USP_X) > 1 || abs(abs(event.getPlayer().getLocation().getBlockY()) - data.USP_Y) > 1 || abs(abs(event.getPlayer().getLocation().getBlockZ()) - data.USP_Z) > 1) {
+        if (abs(abs(event.getPlayer().getLocation().getBlockY()) - data.USP_Y) > 2) {
 
             if (data.ground != data.clientGround && data.deltaY < 0.01) {
 

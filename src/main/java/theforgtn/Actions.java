@@ -42,7 +42,7 @@ public abstract class Actions implements Listener {
         for (Player staff : Bukkit.getOnlinePlayers()) {
             if (staff.hasPermission("singularity.verbose") && data.violations > 0) {
 
-                staff.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8[&5⌛&8] &7" + player.getName() + " &7suspected for &c" + name + " &8|&d " + violations + " &8"));
+                staff.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8[&5⌛&8] &7" + player.getName() + " &7suspected for &c" + name + " &8|&d " + violations + " &8" + data.ping +" ms"));
             }
         }
 

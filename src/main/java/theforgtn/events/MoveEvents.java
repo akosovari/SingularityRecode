@@ -1,6 +1,7 @@
 package theforgtn.events;
 
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -16,7 +17,11 @@ public class MoveEvents implements Listener {
 
         org.bukkit.entity.Player player = event.getPlayer();
         PlayerData data = Main.getInstance().getDataManager().getDataPlayer(player);
+
         data.ground = event.getPlayer().getLocation().subtract(0, 1, 0).getBlock().getType().isSolid();
+        data.deltaY = event.getTo().getY() - event.getFrom().getY();
+        data.ping = event.getPlayer().getPing();
+        data.clientGround = event.getPlayer().isOnGround();
 
         if ((event.getPlayer().getLocation().subtract(0, 1, 0).getBlock().getType().isSolid()
                 || event.getPlayer().getLocation().subtract(1, 1, 0).getBlock().getType().isSolid()

@@ -31,15 +31,6 @@ public class IrregularPositions extends Actions {
             return;
         }
 
-
-        if (m == Material.VINE || m == Material.LADDER  || m == Material.SLIME_BLOCK || m == Material.WATER || data.velXTicks > 5 || data.airTicks < 2) {
-
-            data.IRPB_X = abs(event.getPlayer().getLocation().getBlockX());
-            data.IRPB_Y = abs(event.getPlayer().getLocation().getBlockY());
-            data.IRPB_Z = abs(event.getPlayer().getLocation().getBlockZ());
-
-        }
-
         if (data.ground) {
             YTolerance = 1.3;
         }
@@ -47,7 +38,7 @@ public class IrregularPositions extends Actions {
             YTolerance = 0.5;
         }
 
-        if (abs(abs(event.getPlayer().getLocation().getBlockX()) - data.IRPB_X) > 2 || abs(abs(event.getPlayer().getLocation().getBlockY()) - data.IRPB_Y) > YTolerance || abs(abs(event.getPlayer().getLocation().getBlockZ()) - data.IRPB_Z) > 2) {
+        if (abs(abs(event.getPlayer().getLocation().getBlockX()) - data.USP_X) > 2 || abs(abs(event.getPlayer().getLocation().getBlockY()) - data.USP_Y) > YTolerance || abs(abs(event.getPlayer().getLocation().getBlockZ()) - data.USP_Z) > 2) {
 
             if (data.deltaY >= 0) {
 
@@ -55,9 +46,7 @@ public class IrregularPositions extends Actions {
 
                 if (ConfigFile.cancel_enabled) {
 
-                    float pitch = event.getPlayer().getLocation().getPitch();
-                    float yaw = event.getPlayer().getLocation().getYaw();
-                    event.getPlayer().teleport(new Location(event.getPlayer().getWorld(), data.IRPB_X, data.IRPB_Y, data.IRPB_Z, yaw, pitch));
+                    event.getPlayer().teleport(new Location(event.getPlayer().getWorld(), data.USP_X, data.USP_Y, data.USP_Z, data.USP_YAW, data.USP_PITCH));
 
                 }
 

@@ -17,13 +17,10 @@ public class OtherEvents implements Listener {
         Main.getInstance().getDataManager().add(event.getPlayer());
         PlayerData data = Main.getInstance().getDataManager().getDataPlayer(event.getPlayer().getPlayer());
 
-        data.IRPB_X = abs(event.getPlayer().getLocation().getBlockX());
-        data.IRPB_Y = abs(event.getPlayer().getLocation().getBlockY());
-        data.IRPB_Z = abs(event.getPlayer().getLocation().getBlockZ());
+        data.USP_X = event.getPlayer().getLocation().getBlockX();
+        data.USP_Y = event.getPlayer().getLocation().getBlockY();
+        data.USP_Z = event.getPlayer().getLocation().getBlockZ();
 
-        data.GSP_X = event.getPlayer().getLocation().getX();
-        data.GSP_Z = event.getPlayer().getLocation().getZ();
-        data.GSP_Y= event.getPlayer().getLocation().getY();
 
     }
 
@@ -31,14 +28,9 @@ public class OtherEvents implements Listener {
     public void respawn(PlayerRespawnEvent event) {
         PlayerData data = Main.getInstance().getDataManager().getDataPlayer(event.getPlayer().getPlayer());
 
-        data.IRPB_X = abs(event.getPlayer().getLocation().getBlockX());
-        data.IRPB_Y = abs(event.getPlayer().getLocation().getBlockY());
-        data.IRPB_Z = abs(event.getPlayer().getLocation().getBlockZ());
-
-
-        data.GSP_X = event.getPlayer().getLocation().getX();
-        data.GSP_Z = event.getPlayer().getLocation().getZ();
-        data.GSP_Y= event.getPlayer().getLocation().getY();
+        data.USP_X = event.getPlayer().getLocation().getBlockX();
+        data.USP_Y = event.getPlayer().getLocation().getBlockY();
+        data.USP_Z = event.getPlayer().getLocation().getBlockZ();
 
     }
 }

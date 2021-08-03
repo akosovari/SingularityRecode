@@ -14,16 +14,14 @@ public class PlayerData {
     public int violations, airTicks, groundTicks, ping;
     public double deltaY;
     //Universal setback position
-    public float USP_X, USP_Y, USP_Z;
+    public float USP_X, USP_Y, USP_Z, USP_YAW, USP_PITCH;
 
     //Velocity
     public float lastVelocityTaken;
     public int velXTicks;
 
-    //IRP
-    public float IRPB_X, IRPB_Y, IRPB_Z;
     //GSP
-    public double GSP_X, GSP_Y, GSP_Z, GSP_damage;
+    public double GSP_damage;
     public int GSP_Buffer;
 
 

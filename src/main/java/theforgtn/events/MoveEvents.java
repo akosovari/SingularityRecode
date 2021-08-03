@@ -21,20 +21,22 @@ public class MoveEvents implements Listener {
         PlayerData data = Main.getInstance().getDataManager().getDataPlayer(player);
         Material m = event.getPlayer().getLocation().subtract(0, 1, 0).getBlock().getType();
 
+        //Universal values
         data.ground = event.getPlayer().getLocation().subtract(0, 1, 0).getBlock().getType().isSolid();
         data.deltaY = event.getTo().getY() - event.getFrom().getY();
         data.ping = event.getPlayer().getPing();
         data.clientGround = event.getPlayer().isOnGround();
+        data.USP_PITCH = event.getPlayer().getLocation().getPitch();
+        data.USP_YAW = event.getPlayer().getLocation().getYaw();
 
+        //Universal SetBack Position
         if (m == Material.VINE || m == Material.LADDER  || m == Material.SLIME_BLOCK || m == Material.WATER || data.velXTicks > 5 || data.airTicks < 2) {
 
-            data.USP_X = abs(event.getPlayer().getLocation().getBlockX());
-            data.USP_Y = abs(event.getPlayer().getLocation().getBlockY());
-            data.USP_Z = abs(event.getPlayer().getLocation().getBlockZ());
+            data.USP_X = event.getPlayer().getLocation().getBlockX();
+            data.USP_Y = event.getPlayer().getLocation().getBlockY();
+            data.USP_Z = event.getPlayer().getLocation().getBlockZ();
 
         }
-
-
 
         //Tick counting
         if ((event.getPlayer().getLocation().subtract(0, 1, 0).getBlock().getType().isSolid()

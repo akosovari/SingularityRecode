@@ -10,7 +10,7 @@ public class PlayerData {
     public LivingEntity lastHitEntity;
 
     //Universal values
-    public boolean ground, clientGround;
+    public boolean ground, clientGround, inCreative;
     public int violations, airTicks, groundTicks, ping;
     public double deltaY;
     //Universal setback position

@@ -10,10 +10,8 @@ import theforgtn.Actions;
 import theforgtn.Main;
 import theforgtn.data.ConfigFile;
 import theforgtn.data.PlayerData;
-
 import static java.lang.Math.abs;
-import static theforgtn.data.ConfigFile.cancel_enabled;
-import static theforgtn.data.ConfigFile.cancel_vl;
+
 
 public class GroundSpoof extends Actions {
 
@@ -25,6 +23,10 @@ public class GroundSpoof extends Actions {
     public void onMove(PlayerMoveEvent event) {
         PlayerData data = Main.getInstance().getDataManager().getDataPlayer(event.getPlayer());
         Material m = event.getPlayer().getLocation().subtract(0, 1, 0).getBlock().getType();
+
+        if (!ConfigFile.GSP_enabled || data.inCreative) {
+            return;
+        }
 
         if (abs(abs(event.getPlayer().getLocation().getBlockY()) - data.USP_Y) > 2) {
 

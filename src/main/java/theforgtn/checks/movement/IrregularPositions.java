@@ -27,7 +27,7 @@ public class IrregularPositions extends Actions {
         PlayerData data = Main.getInstance().getDataManager().getDataPlayer(event.getPlayer());
         Material m = event.getPlayer().getLocation().subtract(0, 1, 0).getBlock().getType();
 
-        if (!ConfigFile.IrregularPositions_enabled) {
+        if (!ConfigFile.IrregularPositions_enabled || data.inCreative) {
             return;
         }
 

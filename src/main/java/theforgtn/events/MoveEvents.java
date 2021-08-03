@@ -1,5 +1,6 @@
 package theforgtn.events;
 
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -56,7 +57,11 @@ public class MoveEvents implements Listener {
             data.groundTicks = 0;
 
         }
-
+        if(player.getGameMode() == GameMode.CREATIVE) {
+            data.inCreative = true;
+        } else {
+            data.inCreative = false;
+        }
     }
 
 

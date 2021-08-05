@@ -14,16 +14,20 @@ public class PlayerData {
     public int violations, airTicks, groundTicks, ping;
     public double deltaY;
     //Universal setback position
-    public float USP_X, USP_Y, USP_Z, USP_YAW, USP_PITCH;
+    public float USP_X, USP_Y, USP_Z, USP_YAW, USP_PITCH, deltaXZ;
 
     //Velocity
     public float lastVelocityTaken;
     public int velXTicks;
-
+    //IRP
+    public double IRP_tolerance;
     //GSP
     public double GSP_damage;
     public int GSP_Buffer;
 
+    //Speed
+    public double speed_distX ,speed_distZ, speed_dist, speed_lastDist, speed_shiftedLastDist, speed_equalness, speed_scaledEqualness;
+    public boolean speed_lastOnGround;
 
     public PlayerData(org.bukkit.entity.Player player) {
         this.player = player;

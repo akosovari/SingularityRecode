@@ -3,6 +3,8 @@ package theforgtn.checks;
 import theforgtn.Actions;
 import theforgtn.Main;
 import theforgtn.checks.clientdata.GroundSpoof;
+
+import theforgtn.checks.movement.Speed;
 import theforgtn.data.ConfigFile;
 import theforgtn.checks.movement.IrregularPositions;
 import theforgtn.data.PlayerData;
@@ -14,6 +16,7 @@ public class CheckManager {
     private final List<Actions> checks = new ArrayList<>();
     public CheckManager() {
         checks.add(new IrregularPositions("IrregularPosition", ConfigFile.IrregularPositions_enabled, true, ConfigFile.max_vl_IrregularPositions));
+        checks.add(new Speed("Speed", true, true, 50));
         checks.add(new GroundSpoof("GroundSpoof", ConfigFile.GSP_enabled, true, ConfigFile.GSP_maxvl));
     }
 

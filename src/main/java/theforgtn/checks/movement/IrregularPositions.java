@@ -15,7 +15,6 @@ import static java.lang.Math.abs;
 public class IrregularPositions extends Actions {
 
 
-    private double YTolerance = 2;
 
     public IrregularPositions(String name, boolean enabled, boolean punishable, int max) {
         super(name, enabled, punishable, max);
@@ -25,20 +24,12 @@ public class IrregularPositions extends Actions {
     public void onMove(PlayerMoveEvent event) {
 
         PlayerData data = Main.getInstance().getDataManager().getDataPlayer(event.getPlayer());
-        Material m = event.getPlayer().getLocation().subtract(0, 1, 0).getBlock().getType();
 
-        if (!ConfigFile.IrregularPositions_enabled || data.inCreative) {
+        if (!ConfigFile.IrregularPositions_enabled && data.inCreative) {
             return;
         }
 
-        if (data.ground) {
-            YTolerance = 1.3;
-        }
-        if (m == Material.WATER && !data.ground) {
-            YTolerance = 0.5;
-        }
-
-        if (abs(abs(event.getPlayer().getLocation().getBlockX()) - data.USP_X) > 2 || abs(abs(event.getPlayer().getLocation().getBlockY()) - data.USP_Y) > YTolerance || abs(abs(event.getPlayer().getLocation().getBlockZ()) - data.USP_Z) > 2) {
+        if (abs(abs(event.getPlayer().getLocation().getBlockX()) - Math.abs(data.USP_X)) > 2 || abs(abs(event.getPlayer().getLocation().getBlockY()) - Math.abs(data.USP_Y)) > data.IRP_tolerance || abs(abs(event.getPlayer().getLocation().getBlockZ()) - Math.abs(data.USP_Z)) > 2) {
 
             if (data.deltaY >= 0) {
 

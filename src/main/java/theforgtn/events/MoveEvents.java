@@ -29,14 +29,22 @@ public class MoveEvents implements Listener {
         data.clientGround = event.getPlayer().isOnGround();
         data.USP_PITCH = event.getPlayer().getLocation().getPitch();
         data.USP_YAW = event.getPlayer().getLocation().getYaw();
+        data.deltaXZ = (float) Math.sqrt(Math.pow(event.getTo().getX() - event.getFrom().getX(), 2) + Math.pow(event.getTo().getZ() - event.getFrom().getZ(), 2));
 
         //Universal SetBack Position
-        if (m == Material.VINE || m == Material.LADDER  || m == Material.SLIME_BLOCK || m == Material.WATER || data.velXTicks > 5 || data.airTicks < 2) {
+        if (m == Material.VINE || m == Material.LADDER  || m == Material.SLIME_BLOCK || m == Material.TWISTING_VINES || m == Material.WATER || data.velXTicks > 5 || data.airTicks < 2) {
 
             data.USP_X = event.getPlayer().getLocation().getBlockX();
             data.USP_Y = event.getPlayer().getLocation().getBlockY();
             data.USP_Z = event.getPlayer().getLocation().getBlockZ();
 
+        }
+        //IRP_Tolerance
+        if (data.ground) {
+            data.IRP_tolerance = 1.3;
+        }
+        if (m == Material.WATER && !data.ground) {
+            data.IRP_tolerance = 0.5;
         }
 
         //Tick counting

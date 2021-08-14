@@ -21,6 +21,7 @@ public class BlockInteractions extends Actions {
         Bukkit.broadcastMessage("Distance " + abs(abs(event.getPlayer().getLocation().getBlockX()) - Math.abs(event.getBlock().getLocation().getBlockX())) + "  " + abs(abs(event.getPlayer().getLocation().getBlockY()) - Math.abs(event.getBlock().getLocation().getBlockY())) + "  " + abs(abs(event.getPlayer().getLocation().getBlockZ()) - Math.abs(event.getBlock().getLocation().getBlockZ())));
         if (abs(abs(event.getPlayer().getLocation().getBlockX()) - Math.abs(event.getBlock().getLocation().getBlockX())) > 4 || abs(abs(event.getPlayer().getLocation().getBlockY()) - Math.abs(event.getBlock().getLocation().getBlockY())) > 4 || abs(abs(event.getPlayer().getLocation().getBlockZ()) - Math.abs(event.getBlock().getLocation().getBlockZ())) > 4) {
             flag(event.getPlayer());
+            event.setCancelled(true);
         }
     }
 }

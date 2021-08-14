@@ -2,10 +2,7 @@ package theforgtn.events;
 
 import org.bukkit.GameMode;
 import org.bukkit.Material;
-import org.bukkit.block.BlockFace;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Player;
+
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -39,7 +36,7 @@ public class MoveEvents implements Listener {
         data.jumpBoost = event.getPlayer().hasPotionEffect(PotionEffectType.JUMP);
         data.levitation = event.getPlayer().hasPotionEffect(PotionEffectType.LEVITATION);
         //Universal SetBack Position
-        if (m == Material.VINE || m == Material.LADDER  || m == Material.SLIME_BLOCK || m == Material.TWISTING_VINES || m == Material.WATER || data.velXTicks > 5 || data.airTicks < 2 || data.levitation) {
+        if (m == Material.VINE || m == Material.LADDER  || m == Material.SLIME_BLOCK || m == Material.TWISTING_VINES || m == Material.WATER || data.velXTicks > 5 || data.airTicks < 2 || data.levitation || data.ground) {
 
             data.USP_X = event.getPlayer().getLocation().getBlockX();
             data.USP_Y = event.getPlayer().getLocation().getBlockY();

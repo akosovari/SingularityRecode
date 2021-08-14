@@ -8,6 +8,7 @@ import theforgtn.checks.clientdata.GroundSpoof;
 import theforgtn.checks.interactions.BlockInteractions;
 import theforgtn.checks.movement.BoatFly;
 import theforgtn.checks.movement.Speed;
+import theforgtn.checks.packet.BadPacketsA;
 import theforgtn.data.ConfigFile;
 import theforgtn.checks.movement.IrregularPositions;
 import theforgtn.data.PlayerData;
@@ -22,7 +23,7 @@ public class CheckManager {
         checks.add(new Speed("Speed A", ConfigFile.SpeedA_enabled, true, ConfigFile.SpeedA_max_vl));
         checks.add(new GroundSpoof("GroundSpoof", ConfigFile.GSP_enabled, true, ConfigFile.GSP_max_vl));
         checks.add(new BoatFly("BoatFLY", ConfigFile.BoatFLY_enabled, true, ConfigFile.BoatFLY_max_vl));
-        checks.add(new Speed("BadPacketsA", ConfigFile.BPA_enabled, true, ConfigFile.BPA_max_vl));
+        checks.add(new BadPacketsA("BadPackets", ConfigFile.BPA_enabled, true, ConfigFile.BPA_max_vl));
         checks.add(new BlockInteractions("BadPlacedBlock", true, true, 50));
 
     }

@@ -5,11 +5,11 @@ import org.bukkit.Bukkit;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Manager {
+public class DataManager {
 
     private final Set<PlayerData> dataSet = new HashSet<>();
 
-    public Manager() {
+    public DataManager() {
         Bukkit.getOnlinePlayers().forEach(this::add);
     }
 

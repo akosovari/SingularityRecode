@@ -7,6 +7,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerMoveEvent;
 import theforgtn.Actions;
 import theforgtn.Main;
+import theforgtn.data.ConfigFile;
 import theforgtn.data.PlayerData;
 
 public class Speed extends Actions {
@@ -14,13 +15,15 @@ public class Speed extends Actions {
         super(name, enabled, punishable, max);
     }
     private double lastDist;
-    private boolean lastOnGround;
-    float friction = 0.91F;
+    float friction = 0.92F;
 
-    @EventHandler(priority = EventPriority.HIGH)
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerMove(PlayerMoveEvent event) {
 
         PlayerData data = Main.getInstance().getDataManager().getDataPlayer(event.getPlayer());
+
+        if(event.getPlayer().isGliding() || event.getPlayer().isInsideVehicle() || event.getPlayer().getAllowFlight()){ return; }
+
         data.speed_distX = event.getTo().getX() - event.getFrom().getX();
         data.speed_distZ = event.getTo().getZ() - event.getFrom().getZ();
         data.speed_dist = (data.speed_distX * data.speed_distX) + (data.speed_distZ * data.speed_distZ);
@@ -34,18 +37,20 @@ public class Speed extends Actions {
         data.speed_equalness = data.speed_dist - data.speed_shiftedLastDist;
         data.speed_scaledEqualness = data.speed_equalness * 138;
 
-        if(!data.clientGround && !data.speed_lastOnGround && data.speed_scaledEqualness > 1.5) {
-            Bukkit.broadcastMessage("Value " + data.speed_scaledEqualness);
-            flag(event.getPlayer());
+        if(!data.clientGround && !data.speed_lastOnGround && !data.isInWater) {
+            if(data.speed_scaledEqualness > 1.5) {
+               flag(event.getPlayer());
 
+               if (ConfigFile.SpeedA_Setback && 4000 > System.currentTimeMillis() - data.lastFlag) {
+                   event.getPlayer().teleport(new Location(event.getPlayer().getWorld(), data.USP_X, data.USP_Y, data.USP_Z, data.USP_YAW, data.USP_PITCH));
+
+               }
+               data.lastFlag = System.currentTimeMillis();
+           }
         }
 
 
-        if(data.clientGround){
-            data.speed_lastOnGround = true;
-        } else {
-            data.speed_lastOnGround = false;
-        }
+        data.speed_lastOnGround = data.clientGround;
 
     }
 }

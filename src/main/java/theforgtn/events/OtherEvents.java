@@ -33,4 +33,5 @@ public class OtherEvents implements Listener {
         data.USP_Z = event.getPlayer().getLocation().getBlockZ();
 
     }
+
 }

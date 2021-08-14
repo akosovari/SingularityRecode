@@ -3,6 +3,7 @@ package theforgtn;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 import org.bukkit.event.Listener;
 import theforgtn.data.ConfigFile;
 import theforgtn.data.PlayerData;
@@ -17,8 +18,6 @@ public abstract class Actions implements Listener {
     protected boolean enabled;
     protected boolean punishable;
     protected int max;
-    float messageSent = System.currentTimeMillis();
-    int setbacl_lvl = 0;
 
     public Actions(String name, boolean enabled, boolean punishable, int max) {
         this.name = name;
@@ -43,6 +42,7 @@ public abstract class Actions implements Listener {
             if (staff.hasPermission("singularity.verbose") && data.violations > 0) {
 
                 staff.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8[&5⌛&8] &7" + player.getName() + " &7suspected for &c" + name + " &8|&d " + violations + " &8" + data.ping +" ms"));
+
             }
         }
 
@@ -54,4 +54,5 @@ public abstract class Actions implements Listener {
         this.violations.put(player, violations);
 
     }
+
 }

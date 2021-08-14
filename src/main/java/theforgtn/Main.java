@@ -4,10 +4,12 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Flying;
+import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
-import theforgtn.data.Manager;
+import theforgtn.data.DataManager;
 import theforgtn.checks.CheckManager;
 import theforgtn.events.MoveEvents;
 import theforgtn.events.OtherEvents;
@@ -19,7 +21,7 @@ public class Main extends JavaPlugin {
     public boolean native_version;
     public double version;
     private CheckManager checkManager;
-    private Manager dataManager;
+    private DataManager dataManager;
 
     public static Main getInstance() {
         return instance;
@@ -29,14 +31,13 @@ public class Main extends JavaPlugin {
     public void onEnable() {
         instance = this;
         checkManager = new CheckManager();
-        dataManager = new Manager();
+        dataManager = new DataManager();
         getConfig().options().copyDefaults(true);
         saveDefaultConfig();
 
 
         Bukkit.getPluginManager().registerEvents(new MoveEvents(), this);
         Bukkit.getPluginManager().registerEvents(new OtherEvents(), this);
-
 
         enabled = true;
         PluginDescriptionFile pdf = this.getDescription();
@@ -60,7 +61,7 @@ public class Main extends JavaPlugin {
         }
 
     }
-
+    @Override
     public void onDisable() {
         enabled = false;
         getLogger().info("All checks are disabled!");
@@ -71,11 +72,10 @@ public class Main extends JavaPlugin {
     public CheckManager getCheckManager() {
         return checkManager;
     }
-
-
-    public Manager getDataManager() {
+    public DataManager getDataManager() {
         return dataManager;
     }
+
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (cmd.getName().equalsIgnoreCase("singularity")) {

@@ -19,7 +19,7 @@ public class GroundSpoof extends Actions {
         super(name, enabled, punishable, max);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler(priority = EventPriority.HIGH)
     public void onMove(PlayerMoveEvent event) {
         PlayerData data = Main.getInstance().getDataManager().getDataPlayer(event.getPlayer());
         Material m = event.getPlayer().getLocation().subtract(0, 1, 0).getBlock().getType();
@@ -29,8 +29,8 @@ public class GroundSpoof extends Actions {
         }
 
         if (abs(abs(event.getPlayer().getLocation().getBlockY()) - data.USP_Y) > 2) {
-
-            if (data.ground != data.clientGround && data.deltaY < 0.01) {
+            //&& data.deltaY < 0.01
+            if (data.ground != data.clientGround) {
 
                 flag(event.getPlayer());
 
@@ -40,7 +40,7 @@ public class GroundSpoof extends Actions {
 
                 }
 
-                if (ConfigFile.GSP_setback) {
+                if (ConfigFile.GSP_setback && 5000 > System.currentTimeMillis() - data.lastFlag) {
 
                         event.getPlayer().teleport(new Location(event.getPlayer().getWorld(), data.USP_X, data.USP_Y, data.USP_Z, data.USP_YAW, data.USP_PITCH));
 
@@ -48,6 +48,7 @@ public class GroundSpoof extends Actions {
                 if(ConfigFile.GSP_damage){
                     event.getPlayer().damage(data.GSP_damage);
                 }
+                data.lastFlag = System.currentTimeMillis();
             }
         }
 

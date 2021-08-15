@@ -24,7 +24,7 @@ public class CheckManager {
         checks.add(new GroundSpoof("GroundSpoof", ConfigFile.GSP_enabled, true, ConfigFile.GSP_max_vl));
         checks.add(new BoatFly("BoatFLY", ConfigFile.BoatFLY_enabled, true, ConfigFile.BoatFLY_max_vl));
         checks.add(new BadPacketsA("BadPackets", ConfigFile.BPA_enabled, true, ConfigFile.BPA_max_vl));
-        checks.add(new BlockInteractions("BadPlacedBlock", true, true, 50));
+        checks.add(new BlockInteractions("BadBlockPlace", ConfigFile.BBP_enabled, true, ConfigFile.BBP_max_vl));
 
     }
 

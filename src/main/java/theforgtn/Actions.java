@@ -11,6 +11,8 @@ import theforgtn.data.PlayerData;
 import java.util.Map;
 import java.util.WeakHashMap;
 
+import static org.bukkit.Bukkit.getLogger;
+
 public abstract class Actions implements Listener {
 
     public Map<Player, Integer> violations = new WeakHashMap<>();
@@ -34,15 +36,18 @@ public abstract class Actions implements Listener {
         PlayerData data = Main.getInstance().getDataManager().getDataPlayer(player.getPlayer());
 
 
-        int violations = this.violations.getOrDefault(player, 0) + 1;
+        int violations = this.violations.getOrDefault(player,0) + 1;
 
         data.violations = violations;
-
+        if(ConfigFile.console_log) {
+            getLogger().info("[⌛] " + player.getName() + " suspected for " + name + " | " + violations + "x ping " + data.ping + "ms");
+        }
         for (Player staff : Bukkit.getOnlinePlayers()) {
             if (staff.hasPermission("singularity.verbose") && data.violations > 0) {
-
                 staff.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8[&5⌛&8] &7" + player.getName() + " &7suspected for &c" + name + " &8|&d " + violations + " &8" + data.ping +" ms"));
-
+                if(violations > max){
+                    staff.sendTitle(ChatColor.translateAlternateColorCodes('&', "&5Singularity"), ChatColor.translateAlternateColorCodes('&',"&7"+ player.getName() + " failed and detected by " + name + " check!"), 5, 20, 10);
+                }
             }
         }
 
@@ -50,6 +55,9 @@ public abstract class Actions implements Listener {
 
             player.kickPlayer(ChatColor.translateAlternateColorCodes('&', ConfigFile.kick_message));
 
+        }
+        if (violations > max){
+            violations = 0;
         }
         this.violations.put(player, violations);
 

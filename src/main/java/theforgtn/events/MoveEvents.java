@@ -12,8 +12,6 @@ import org.bukkit.potion.PotionEffectType;
 import theforgtn.Main;
 import theforgtn.data.PlayerData;
 
-import static java.lang.Math.abs;
-
 public class MoveEvents implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
@@ -36,7 +34,7 @@ public class MoveEvents implements Listener {
         data.jumpBoost = event.getPlayer().hasPotionEffect(PotionEffectType.JUMP);
         data.levitation = event.getPlayer().hasPotionEffect(PotionEffectType.LEVITATION);
         //Universal SetBack Position
-        if (m == Material.VINE || m == Material.LADDER  || m == Material.SLIME_BLOCK || m == Material.TWISTING_VINES || m == Material.WATER || data.velXTicks > 5 || data.airTicks < 2 || data.levitation || data.ground) {
+        if (m == Material.VINE || m == Material.LADDER  || m == Material.SLIME_BLOCK || m == Material.TWISTING_VINES || m == Material.WATER || data.velXTicks > 5 || data.airTicks < 2 || data.levitation || data.ground || data.isInWater) {
 
             data.USP_X = event.getPlayer().getLocation().getBlockX();
             data.USP_Y = event.getPlayer().getLocation().getBlockY();

@@ -55,8 +55,8 @@ public class Main extends JavaPlugin {
             getLogger().warning("| Combat checks are disabled in this version!");
             native_version = true;
         } else {
-            getLogger().warning("   | Singularity may not be compatible with your server version! [" + Bukkit.getBukkitVersion() + "]");
-            getLogger().warning("   | Combat checks are disabled in this version!");
+            getLogger().warning("| Singularity may not be compatible with your server version! [" + Bukkit.getBukkitVersion() + "]");
+            getLogger().warning("| Combat checks are disabled in this version!");
             native_version = false;
         }
 

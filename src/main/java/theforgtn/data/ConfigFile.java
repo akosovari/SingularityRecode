@@ -27,15 +27,16 @@ public class ConfigFile {
 
     //BadPacketsA
     public static boolean BPA_enabled = Main.getInstance().getConfig().getBoolean("Packet.BadPacketsA.enabled");
-    public static boolean BPA_Setback = Main.getInstance().getConfig().getBoolean("Packet.BadPacketsA.setback");
+    public static boolean BPA_cancel = Main.getInstance().getConfig().getBoolean("Packet.BadPacketsA.cancel");
     public static int BPA_max_vl = Main.getInstance().getConfig().getInt("Packet.BadPacketsA.max_vl");
 
+    //BadBlockPlace
+    public static boolean BBP_enabled = Main.getInstance().getConfig().getBoolean("Interactions.BadBlockPlace.enabled");
+    public static boolean BBP_cancel = Main.getInstance().getConfig().getBoolean("Interactions.BadBlockPlace.cancel");
+    public static int BBP_max_vl = Main.getInstance().getConfig().getInt("Interactions.BadBlockPlace.max_vl");
+
     //Settings
-    public static String event_priority = Main.getInstance().getConfig().getString("event-priority");
-    public static boolean cancel_enabled = Main.getInstance().getConfig().getBoolean("Cancel.enabled");
-    public static int cancel_vl = Main.getInstance().getConfig().getInt("Cancel.cancel_vl");
-
-
+    public static boolean console_log = Main.getInstance().getConfig().getBoolean("console-log");
     public static boolean kick_enabled = Main.getInstance().getConfig().getBoolean("kick-enabled");
     public static String kick_message = Main.getInstance().getConfig().getString("kick-message");
 

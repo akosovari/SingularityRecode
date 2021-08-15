@@ -13,8 +13,8 @@ public class PlayerData {
     //Universal values
     public boolean ground, clientGround, inCreative, onBoat, isInWater, jumpBoost, levitation;
     public int violations, airTicks, groundTicks, ping;
-    public double deltaY;
-    public float USP_X, USP_Y, USP_Z, USP_YAW, USP_PITCH, deltaXZ, lastFlag;
+    public double deltaY, lastFlag;
+    public float USP_X, USP_Y, USP_Z, USP_YAW, USP_PITCH, deltaXZ;
     //Velocity
     public float lastVelocityTaken;
     public int velXTicks;

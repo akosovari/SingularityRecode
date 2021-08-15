@@ -18,42 +18,37 @@ Movement:
   SpeedA:
     enabled: true
     setback: true
-    max_vl: 50
+    max_vl: 30
 
   BoatFly:
     enabled: true
     setback: true
-    max_vl: 50
+    max_vl: 15
 
 ClientData:
   GroundSpoof:
     enabled: true
     damage: false
     setback: true
-    max_vl: 10
+    max_vl: 6
+
+Interactions:
+  BadBlockPlace:
+    enabled: true
+    cancel: true
+    max_vl: 5
 
   Packet:
     BadPacketsA:
       enabled: true
-      setback: true
+      cancel: true
       max_vl: 3
 #_____________Settings_____________#
-
-#_______EventPriority_______#
-# LOWEST LOW NORMAL HIGH HIGHEST
-even-priority: "HIGHEST"
-
-#_______Prevent_______#
-Cancel:
-  # Above this violation level singularity will try to cancel irregular actions.
-  cancel_vl: 3
-
-#_____________Punishments_____________#
-# Enables kick when player reaches max_vl above.
+# Should flags be visible in the console?
+console-log: true
+# Kick when player reaches max_vl.
 kick-enabled: false
-
 # Displayed message when kicked for detection.
-# Use minecraft color codes.
 kick-message: "&8[&5⌛&8] &7Singularity cheat detection."
 
 

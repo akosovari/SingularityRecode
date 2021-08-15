@@ -29,7 +29,7 @@ public class BadPacketsA extends Actions {
             if(Math.abs(event.getPlayer().getLocation().getPitch()) > 90)
 
                 flag(event.getPlayer());
-                if(ConfigFile.BPA_Setback){
+                if(ConfigFile.BPA_cancel){
                     event.getPlayer().teleport(new Location(event.getPlayer().getWorld(), data.USP_X, data.USP_Y, data.USP_Z, data.USP_YAW, data.USP_PITCH));
                 }
     }

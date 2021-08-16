@@ -33,13 +33,11 @@ public class BoatFly extends Actions {
         if (abs(abs(event.getPlayer().getLocation().getBlockX()) - Math.abs(data.USP_X)) > 5 || abs(abs(event.getPlayer().getLocation().getBlockY()) - Math.abs(data.USP_Y)) > 1.5 || abs(abs(event.getPlayer().getLocation().getBlockZ()) - Math.abs(data.USP_Z)) > 5) {
 
             if (data.deltaY >= 0) {
-
-                flag(event.getPlayer());
-
-                if (ConfigFile.BoatFLY_Setback && 3000 > System.currentTimeMillis() - data.lastFlag) {
-
-                    event.getPlayer().teleport(new Location(event.getPlayer().getWorld(), data.USP_X, data.USP_Y, data.USP_Z, data.USP_YAW, data.USP_PITCH));
-
+                if(2000 > System.currentTimeMillis() - data.lastFlag) {
+                    flag(event.getPlayer());
+                    if (ConfigFile.BoatFLY_Setback) {
+                        event.getPlayer().teleport(new Location(event.getPlayer().getWorld(), data.USP_X, data.USP_Y, data.USP_Z, data.USP_YAW, data.USP_PITCH));
+                    }
                 }
                 data.lastFlag = System.currentTimeMillis();
             } else {

@@ -32,13 +32,11 @@ public class IrregularPositions extends Actions {
         if (abs(abs(event.getPlayer().getLocation().getBlockX()) - Math.abs(data.USP_X)) > 2 || abs(abs(event.getPlayer().getLocation().getBlockY()) - Math.abs(data.USP_Y)) > data.IRP_tolerance || abs(abs(event.getPlayer().getLocation().getBlockZ()) - Math.abs(data.USP_Z)) > 2) {
 
             if (data.deltaY >= 0) {
-
-                flag(event.getPlayer());
-
-                if (ConfigFile.IRP_Setback && 2000 > System.currentTimeMillis() - data.lastFlag) {
-
-                    event.getPlayer().teleport(new Location(event.getPlayer().getWorld(), data.USP_X, data.USP_Y, data.USP_Z, data.USP_YAW, data.USP_PITCH));
-
+                if(5000 > System.currentTimeMillis() - data.lastFlag){
+                    flag(event.getPlayer());
+                    if (ConfigFile.IRP_Setback) {
+                        event.getPlayer().teleport(new Location(event.getPlayer().getWorld(), data.USP_X, data.USP_Y, data.USP_Z, data.USP_YAW, data.USP_PITCH));
+                    }
                 }
                 data.lastFlag = System.currentTimeMillis();
             } else {

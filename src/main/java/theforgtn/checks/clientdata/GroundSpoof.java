@@ -32,21 +32,23 @@ public class GroundSpoof extends Actions {
             //&& data.deltaY < 0.01
             if (data.ground != data.clientGround) {
 
-                flag(event.getPlayer());
 
-                if (data.GSP_damage < ((event.getPlayer().getLocation().getY() - event.getPlayer().getWorld().getHighestBlockYAt(event.getPlayer().getLocation())) - 3)) {
+                if(5000 > System.currentTimeMillis() - data.lastFlag) {
+                    flag(event.getPlayer());
+                    if (data.GSP_damage < ((event.getPlayer().getLocation().getY() - event.getPlayer().getWorld().getHighestBlockYAt(event.getPlayer().getLocation())) - 3)) {
 
-                    data.GSP_damage = ((event.getPlayer().getLocation().getY() - event.getPlayer().getWorld().getHighestBlockYAt(event.getPlayer().getLocation())) - 3);
+                        data.GSP_damage = ((event.getPlayer().getLocation().getY() - event.getPlayer().getWorld().getHighestBlockYAt(event.getPlayer().getLocation())) - 3);
 
-                }
+                    }
 
-                if (ConfigFile.GSP_setback && 5000 > System.currentTimeMillis() - data.lastFlag) {
+                    if (ConfigFile.GSP_setback) {
 
                         event.getPlayer().teleport(new Location(event.getPlayer().getWorld(), data.USP_X, data.USP_Y, data.USP_Z, data.USP_YAW, data.USP_PITCH));
 
-                }
-                if(ConfigFile.GSP_damage){
-                    event.getPlayer().damage(data.GSP_damage);
+                    }
+                    if (ConfigFile.GSP_damage) {
+                        event.getPlayer().damage(data.GSP_damage);
+                    }
                 }
                 data.lastFlag = System.currentTimeMillis();
             }

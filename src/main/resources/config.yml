@@ -5,11 +5,16 @@
 #|      |||   ||   ||   ||    ,---||    ||    |   |  |#
 #|  `---'``   '`---|`---'`---'`---^`    ``---'`---|  |#
 #|             `---'                          `---'  |#
-#|                              Recode Version 17.2  |#
+#|                              Recode Version 17.3  |#
 #######################################################
 
 #_____________Checks_____________#
 Movement:
+  Fly:
+    enabled: true
+    setback: true
+    max_vl: 10
+
   IrregularPositions:
     enabled: true
     setback: true
@@ -18,12 +23,12 @@ Movement:
   SpeedA:
     enabled: true
     setback: true
-    max_vl: 30
+    max_vl: 15
 
   BoatFly:
     enabled: true
     setback: true
-    max_vl: 15
+    max_vl: 8
 
 ClientData:
   GroundSpoof:

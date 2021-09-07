@@ -5,6 +5,7 @@ import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.util.Vector;
 import theforgtn.Actions;
 import theforgtn.Main;
 import theforgtn.data.ConfigFile;
@@ -21,6 +22,7 @@ public class Speed extends Actions {
     public void onPlayerMove(PlayerMoveEvent event) {
 
         PlayerData data = Main.getInstance().getDataManager().getDataPlayer(event.getPlayer());
+        Vector v = event.getPlayer().getVelocity();
 
         if(event.getPlayer().isGliding() || event.getPlayer().isInsideVehicle() || event.getPlayer().getAllowFlight()){ return; }
 
@@ -42,8 +44,13 @@ public class Speed extends Actions {
                if(2000 > System.currentTimeMillis() - data.lastFlag) {
                    flag(event.getPlayer());
                    if (ConfigFile.SpeedA_Setback) {
-                       event.getPlayer().teleport(new Location(event.getPlayer().getWorld(), data.USP_X, data.USP_Y, data.USP_Z, data.USP_YAW, data.USP_PITCH));
+                       v.setY(-5);
+                       event.getPlayer().setVelocity(v);
+                       if(250 > System.currentTimeMillis() - data.lastFlag) {
+                           event.getPlayer().teleport(new Location(event.getPlayer().getWorld(), data.USP_X, data.USP_Y, data.USP_Z, data.USP_YAW, data.USP_PITCH));
 
+
+                       }
                    }
                }
                data.lastFlag = System.currentTimeMillis();

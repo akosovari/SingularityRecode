@@ -3,6 +3,11 @@ package theforgtn.data;
 import theforgtn.Main;
 
 public class ConfigFile {
+    //Fly
+    public static boolean FLY_enabled = Main.getInstance().getConfig().getBoolean("Movement.Fly.enabled");
+    public static boolean FLY_Setback = Main.getInstance().getConfig().getBoolean("Movement.Fly.setback");
+    public static int FLY_max_vl = Main.getInstance().getConfig().getInt("Movement.Fly.max_vl");
+
     //IRP
     public static boolean IRP_enabled = Main.getInstance().getConfig().getBoolean("Movement.IrregularPositions.enabled");
     public static boolean IRP_Setback = Main.getInstance().getConfig().getBoolean("Movement.IrregularPositions.setback");

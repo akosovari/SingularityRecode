@@ -13,11 +13,11 @@ import theforgtn.data.PlayerData;
 
 import static java.lang.Math.abs;
 
-public class IrregularPositions extends Actions {
+public class VerticalMovement extends Actions {
 
 
 
-    public IrregularPositions(String name, boolean enabled, boolean punishable, int max) {
+    public VerticalMovement(String name, boolean enabled, boolean punishable, int max) {
         super(name, enabled, punishable, max);
     }
 
@@ -27,30 +27,24 @@ public class IrregularPositions extends Actions {
         PlayerData data = Main.getInstance().getDataManager().getDataPlayer(event.getPlayer());
         Vector v = event.getPlayer().getVelocity();
 
-        if (!ConfigFile.IRP_enabled || data.inCreative || event.getPlayer().getAllowFlight() || event.getPlayer().isInsideVehicle()) {
+        if (!ConfigFile.IRP_enabled || data.inCreative || event.getPlayer().getAllowFlight() || event.getPlayer().isInsideVehicle() || data.ground || event.getPlayer().isGliding()) {
             return;
         }
-        if (abs(abs(event.getPlayer().getLocation().getBlockX()) - Math.abs(data.USP_X)) > 2 || abs(abs(event.getPlayer().getLocation().getBlockY()) - Math.abs(data.USP_Y)) > data.IRP_tolerance || abs(abs(event.getPlayer().getLocation().getBlockZ()) - Math.abs(data.USP_Z)) > 2) {
+        if (abs(abs(event.getPlayer().getLocation().getBlockX()) - Math.abs(data.USP_X)) > 0.5 || abs(abs(event.getPlayer().getLocation().getBlockZ()) - Math.abs(data.USP_Z)) > 0.5) {
 
-            if (data.deltaY >= 0) {
+            if (data.deltaY == data.VTMlast_deltaY) {
                 if(5000 > System.currentTimeMillis() - data.lastFlag){
                     flag(event.getPlayer());
                     v.setY(-2);
                     event.getPlayer().setVelocity(v);
-                    if(250 > System.currentTimeMillis() - data.lastFlag) {
+                    if(100 > System.currentTimeMillis() - data.lastFlag) {
                         event.getPlayer().teleport(new Location(event.getPlayer().getWorld(), data.USP_X, data.USP_Y, data.USP_Z, data.USP_YAW, data.USP_PITCH));
-
-
                     }
                 }
                 data.lastFlag = System.currentTimeMillis();
-            } else {
-                //Zuhanás, eltelt idő kiszámolása, a minecraftbeli gravitációs gyorsulással ==> ha nem egyenlő akkor flag
-                return;
             }
+            data.VTMlast_deltaY = data.deltaY;
 
         }
-
-
     }
 }

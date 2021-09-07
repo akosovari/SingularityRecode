@@ -37,6 +37,7 @@ public class BoatFly extends Actions {
                     flag(event.getPlayer());
                     if (ConfigFile.BoatFLY_Setback) {
                         event.getPlayer().teleport(new Location(event.getPlayer().getWorld(), data.USP_X, data.USP_Y, data.USP_Z, data.USP_YAW, data.USP_PITCH));
+
                     }
                 }
                 data.lastFlag = System.currentTimeMillis();

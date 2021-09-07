@@ -11,7 +11,7 @@ public class PlayerData {
     public LivingEntity lastHitEntity;
 
     //Universal values
-    public boolean ground, clientGround, inCreative, onBoat, isInWater, jumpBoost, levitation;
+    public boolean ground, clientGround, inCreative, onBoat, isInWater, jumpBoost, levitation, teleported;
     public int violations, airTicks, groundTicks, ping;
     public double deltaY, lastFlag;
     public float USP_X, USP_Y, USP_Z, USP_YAW, USP_PITCH, deltaXZ;
@@ -24,13 +24,13 @@ public class PlayerData {
     //GSP
     public double GSP_damage;
     public int GSP_Buffer;
-
+    //VerticalMove
+    public double VTMlast_deltaY;
     //Speed
     public double speed_distX ,speed_distZ, speed_dist, speed_lastDist, speed_shiftedLastDist, speed_equalness, speed_scaledEqualness;
     public boolean speed_lastOnGround;
 
     //BlockInteractions
-    public float lastPlacedBlock_X, lastPlacedBlock_Y, lastPlacedBlock_Z;
 
     public PlayerData(org.bukkit.entity.Player player) {
         this.player = player;

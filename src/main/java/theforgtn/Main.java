@@ -11,8 +11,12 @@ import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 import theforgtn.data.DataManager;
 import theforgtn.checks.CheckManager;
+import theforgtn.data.PlayerData;
 import theforgtn.events.MoveEvents;
 import theforgtn.events.OtherEvents;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class Main extends JavaPlugin {
 
@@ -26,7 +30,6 @@ public class Main extends JavaPlugin {
     public static Main getInstance() {
         return instance;
     }
-
     @Override
     public void onEnable() {
         instance = this;
@@ -72,10 +75,7 @@ public class Main extends JavaPlugin {
     public CheckManager getCheckManager() {
         return checkManager;
     }
-    public DataManager getDataManager() {
-        return dataManager;
-    }
-
+    public DataManager getDataManager() { return dataManager; }
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (cmd.getName().equalsIgnoreCase("singularity")) {

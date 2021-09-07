@@ -20,8 +20,7 @@ public class OtherEvents implements Listener {
         data.USP_X = event.getPlayer().getLocation().getBlockX();
         data.USP_Y = event.getPlayer().getLocation().getBlockY();
         data.USP_Z = event.getPlayer().getLocation().getBlockZ();
-
-
+        data.VTMlast_deltaY = data.deltaY;
     }
 
     @EventHandler
@@ -31,7 +30,7 @@ public class OtherEvents implements Listener {
         data.USP_X = event.getPlayer().getLocation().getBlockX();
         data.USP_Y = event.getPlayer().getLocation().getBlockY();
         data.USP_Z = event.getPlayer().getLocation().getBlockZ();
-
+        data.VTMlast_deltaY = data.deltaY;
     }
 
 }

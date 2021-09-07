@@ -30,7 +30,7 @@ public class VerticalMovement extends Actions {
         if (!ConfigFile.IRP_enabled || data.inCreative || event.getPlayer().getAllowFlight() || event.getPlayer().isInsideVehicle() || data.ground || event.getPlayer().isGliding()) {
             return;
         }
-        if (abs(abs(event.getPlayer().getLocation().getBlockX()) - Math.abs(data.USP_X)) > 0.5 || abs(abs(event.getPlayer().getLocation().getBlockZ()) - Math.abs(data.USP_Z)) > 0.5) {
+        if (abs(abs(event.getPlayer().getLocation().getBlockX()) - Math.abs(data.USP_X)) > 1 || abs(abs(event.getPlayer().getLocation().getBlockZ()) - Math.abs(data.USP_Z)) > 1) {
 
             if (data.deltaY == data.VTMlast_deltaY) {
                 if(5000 > System.currentTimeMillis() - data.lastFlag){

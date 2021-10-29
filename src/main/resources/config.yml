@@ -5,7 +5,7 @@
 #|      |||   ||   ||   ||    ,---||    ||    |   |  |#
 #|  `---'``   '`---|`---'`---'`---^`    ``---'`---|  |#
 #|             `---'                          `---'  |#
-#|                              Recode Version 17.3  |#
+#|                       Recode Version 17.4 STABLE  |#
 #######################################################
 
 #_____________Checks_____________#
@@ -16,6 +16,11 @@ Movement:
     max_vl: 10
 
   IrregularPositions:
+    enabled: true
+    setback: true
+    max_vl: 15
+
+  VerticalMovement:
     enabled: true
     setback: true
     max_vl: 15
@@ -48,7 +53,9 @@ Interactions:
       enabled: true
       cancel: true
       max_vl: 3
-#_____________Settings_____________#
+
+# Settings
+pushdown-velocity: -1
 # Should flags be visible in the console?
 console-log: true
 # Kick when player reaches max_vl.

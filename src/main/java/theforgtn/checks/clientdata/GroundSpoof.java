@@ -19,7 +19,7 @@ public class GroundSpoof extends Actions {
         super(name, enabled, punishable, max);
     }
 
-    @EventHandler(priority = EventPriority.HIGH)
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onMove(PlayerMoveEvent event) {
         PlayerData data = Main.getInstance().getDataManager().getDataPlayer(event.getPlayer());
         Material m = event.getPlayer().getLocation().subtract(0, 1, 0).getBlock().getType();

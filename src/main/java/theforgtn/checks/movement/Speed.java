@@ -41,10 +41,10 @@ public class Speed extends Actions {
 
         if(!data.clientGround && !data.speed_lastOnGround && !data.isInWater) {
             if(data.speed_scaledEqualness > 1.5) {
-               if(2000 > System.currentTimeMillis() - data.lastFlag) {
+               if(1000 > System.currentTimeMillis() - data.lastFlag) {
                    flag(event.getPlayer());
                    if (ConfigFile.SpeedA_Setback) {
-                       v.setY(-5);
+                       v.setY(ConfigFile.pushdown_velo);
                        event.getPlayer().setVelocity(v);
                        if(250 > System.currentTimeMillis() - data.lastFlag) {
                            event.getPlayer().teleport(new Location(event.getPlayer().getWorld(), data.USP_X, data.USP_Y, data.USP_Z, data.USP_YAW, data.USP_PITCH));

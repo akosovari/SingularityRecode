@@ -21,7 +21,7 @@ public class BoatFly extends Actions {
         super(name, enabled, punishable, max);
     }
 
-    @EventHandler(priority = EventPriority.LOWEST)
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onMove(PlayerMoveEvent event) {
 
         PlayerData data = Main.getInstance().getDataManager().getDataPlayer(event.getPlayer());

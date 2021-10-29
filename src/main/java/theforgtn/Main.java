@@ -51,7 +51,7 @@ public class Main extends JavaPlugin {
         getLogger().info("|      |||   ||   ||   ||    ,---||    ||    |   |  |");
         getLogger().info("|  `---'``   '`---|`---'`---'`---^`    ``---'`---|  |");
         getLogger().info("|             `---'                          `---'  |");
-        getLogger().info("|                              Recode Version 17    |");
+        getLogger().info("|                        Recode Version 17.4 STABLE |");
         getLogger().info("|---------------------------------------------------|");
         if (Bukkit.getBukkitVersion().contains("1.17")) {
             getLogger().info("| Native 1.17 server version.");

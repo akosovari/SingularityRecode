@@ -52,15 +52,16 @@ public class Fly extends Actions {
 
         if(!onGround && !lastOnGround && lastLastOnGround && Math.abs(predictedDist) >= 0.005D){
             if(!isRoughlyEqual(distY,predictedDist)){
-                if(3000 > System.currentTimeMillis() - data.lastFlag) {
+                if(1000 > System.currentTimeMillis() - data.lastFlag) {
                     flag(event.getPlayer());
-                    if (ConfigFile.FLY_Setback)
-                        v.setY(-10.0);
+                    if (ConfigFile.FLY_Setback){
+                        v.setY(ConfigFile.pushdown_velo);
                         event.getPlayer().setVelocity(v);
-                        if(1000 > System.currentTimeMillis() - data.lastFlag) {
+                        if(500 > System.currentTimeMillis() - data.lastFlag) {
                             event.getPlayer().teleport(new Location(event.getPlayer().getWorld(), data.USP_X, data.USP_Y, data.USP_Z, data.USP_YAW, data.USP_PITCH));
                             if(data.ground) {
                                 event.getPlayer().damage(data.GSP_damage);
+                                }
                             }
                         }
                     }

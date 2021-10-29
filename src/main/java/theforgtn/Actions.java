@@ -44,13 +44,16 @@ public abstract class Actions implements Listener {
         }
         for (Player staff : Bukkit.getOnlinePlayers()) {
             if (staff.hasPermission("singularity.verbose") && data.violations > 0) {
-                staff.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8[&5⌛&8] &7" + player.getName() + " &7suspected for &c" + name + " &8|&d " + violations + " &8" + data.ping +" ms"));
+                staff.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8[&3⌛&8] &7" + player.getName() + " &7suspected for &b" + name + " &8|&3 " + violations + "&8/&c"+max+" &8" + data.ping +" ms"));
             }
         }
 
-        if (violations > max && ConfigFile.kick_enabled) {
-
-            player.kickPlayer(ChatColor.translateAlternateColorCodes('&', ConfigFile.kick_message));
+        if (violations > max) {
+            if(ConfigFile.kick_enabled){
+                player.kickPlayer(ChatColor.translateAlternateColorCodes('&', ConfigFile.kick_message));
+            } else if (player.hasPermission("singularity.verbose")){
+                player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8[&3⌛&8] &cYou would be banned by " + name + " check!"));
+            }
 
         }
         if (violations > max){

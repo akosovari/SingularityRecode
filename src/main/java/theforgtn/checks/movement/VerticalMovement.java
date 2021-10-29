@@ -30,15 +30,17 @@ public class VerticalMovement extends Actions {
         if (!ConfigFile.IRP_enabled || data.inCreative || event.getPlayer().getAllowFlight() || event.getPlayer().isInsideVehicle() || data.ground || event.getPlayer().isGliding()) {
             return;
         }
-        if (abs(abs(event.getPlayer().getLocation().getBlockX()) - Math.abs(data.USP_X)) > 1 || abs(abs(event.getPlayer().getLocation().getBlockZ()) - Math.abs(data.USP_Z)) > 1) {
+        if (event.getPlayer().isInWater() || abs(abs(event.getPlayer().getLocation().getBlockX()) - Math.abs(data.USP_X)) > 1 || abs(abs(event.getPlayer().getLocation().getBlockZ()) - Math.abs(data.USP_Z)) > 1) {
 
             if (data.deltaY == data.VTMlast_deltaY) {
-                if(5000 > System.currentTimeMillis() - data.lastFlag){
+                if(1000 > System.currentTimeMillis() - data.lastFlag){
                     flag(event.getPlayer());
-                    v.setY(-2);
-                    event.getPlayer().setVelocity(v);
-                    if(100 > System.currentTimeMillis() - data.lastFlag) {
-                        event.getPlayer().teleport(new Location(event.getPlayer().getWorld(), data.USP_X, data.USP_Y, data.USP_Z, data.USP_YAW, data.USP_PITCH));
+                    if(ConfigFile.VRTMovement_Setback){
+                        v.setY(ConfigFile.pushdown_velo);
+                        event.getPlayer().setVelocity(v);
+                        if(100 > System.currentTimeMillis() - data.lastFlag) {
+                            event.getPlayer().teleport(new Location(event.getPlayer().getWorld(), data.USP_X, data.USP_Y, data.USP_Z, data.USP_YAW, data.USP_PITCH));
+                        }
                     }
                 }
                 data.lastFlag = System.currentTimeMillis();

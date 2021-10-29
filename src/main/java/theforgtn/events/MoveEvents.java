@@ -15,7 +15,7 @@ import theforgtn.data.PlayerData;
 
 public class MoveEvents implements Listener {
 
-    @EventHandler(priority = EventPriority.MONITOR)
+    @EventHandler(priority = EventPriority.LOWEST)
     public void onMove(PlayerMoveEvent event) {
 
         org.bukkit.entity.Player player = event.getPlayer();
@@ -36,15 +36,9 @@ public class MoveEvents implements Listener {
         data.levitation = event.getPlayer().hasPotionEffect(PotionEffectType.LEVITATION);
         //Universal SetBack Positions
         if (m == Material.VINE || m == Material.LADDER  || m == Material.SLIME_BLOCK || m == Material.TWISTING_VINES || m == Material.WATER || m == Material.LILY_PAD || data.velXTicks > 2 || data.airTicks < 2 || data.levitation || data.ground || data.isInWater || data.airTicks > 20) {
-            if (data.airTicks > 20 && !data.ground) {
-                data.USP_X = event.getPlayer().getLocation().getBlockX();
-                data.USP_Y = event.getPlayer().getLocation().getBlockY() - (float)0.1;
-                data.USP_Z = event.getPlayer().getLocation().getBlockZ();
-            } else{
                 data.USP_X = event.getPlayer().getLocation().getBlockX();
                 data.USP_Y = event.getPlayer().getLocation().getBlockY();
                 data.USP_Z = event.getPlayer().getLocation().getBlockZ();
-            }
         }
         //IRP_Tolerance
         if (data.ground) {

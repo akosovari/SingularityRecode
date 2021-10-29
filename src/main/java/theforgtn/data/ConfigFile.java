@@ -12,7 +12,10 @@ public class ConfigFile {
     public static boolean IRP_enabled = Main.getInstance().getConfig().getBoolean("Movement.IrregularPositions.enabled");
     public static boolean IRP_Setback = Main.getInstance().getConfig().getBoolean("Movement.IrregularPositions.setback");
     public static int IRP_max_vl = Main.getInstance().getConfig().getInt("Movement.IrregularPositions.max_vl");
-
+    //VRTMovement
+    public static boolean VRTMovement_enabled = Main.getInstance().getConfig().getBoolean("Movement.VerticalMovement.enabled");
+    public static boolean VRTMovement_Setback = Main.getInstance().getConfig().getBoolean("Movement.VerticalMovement.setback");
+    public static int VRTMovement_max_vl = Main.getInstance().getConfig().getInt("Movement.VerticalMovement.max_vl");
     //SpeedA
     public static boolean SpeedA_enabled = Main.getInstance().getConfig().getBoolean("Movement.SpeedA.enabled");
     public static boolean SpeedA_Setback = Main.getInstance().getConfig().getBoolean("Movement.SpeedA.setback");
@@ -41,6 +44,7 @@ public class ConfigFile {
     public static int BBP_max_vl = Main.getInstance().getConfig().getInt("Interactions.BadBlockPlace.max_vl");
 
     //Settings
+    public static int pushdown_velo = Main.getInstance().getConfig().getInt("pushdown-velocity");
     public static boolean console_log = Main.getInstance().getConfig().getBoolean("console-log");
     public static boolean kick_enabled = Main.getInstance().getConfig().getBoolean("kick-enabled");
     public static String kick_message = Main.getInstance().getConfig().getString("kick-message");

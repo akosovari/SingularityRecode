@@ -1,35 +1,32 @@
 package theforgtn.checks;
 
 import theforgtn.Actions;
-import theforgtn.Main;
-import theforgtn.checks.clientdata.GroundSpoof;
-
-
-import theforgtn.checks.interactions.BlockInteractions;
+import theforgtn.checks.clientdata.*;
+import theforgtn.checks.interactions.*;
 import theforgtn.checks.movement.*;
-import theforgtn.checks.packet.BadPacketsA;
+import theforgtn.checks.packet.*;
 import theforgtn.data.ConfigFile;
-import theforgtn.data.PlayerData;
-
 import java.util.ArrayList;
 import java.util.List;
-public class CheckManager {
 
+public class CheckManager {
     private final List<Actions> checks = new ArrayList<>();
     public CheckManager() {
-        checks.add(new VerticalMovement("VerticalMovement", ConfigFile.FLY_enabled, true, ConfigFile.FLY_max_vl));
-
-        checks.add(new IrregularPositions("IrregularPosition", ConfigFile.IRP_enabled, true, ConfigFile.IRP_max_vl));
-        checks.add(new Fly("Fly", ConfigFile.FLY_enabled, true, ConfigFile.FLY_max_vl));
-
-        checks.add(new Speed("Speed A", ConfigFile.SpeedA_enabled, true, ConfigFile.SpeedA_max_vl));
-        checks.add(new GroundSpoof("GroundSpoof", ConfigFile.GSP_enabled, true, ConfigFile.GSP_max_vl));
-        checks.add(new BoatFly("BoatFLY", ConfigFile.BoatFLY_enabled, true, ConfigFile.BoatFLY_max_vl));
-        checks.add(new BadPacketsA("BadPackets", ConfigFile.BPA_enabled, true, ConfigFile.BPA_max_vl));
-        checks.add(new BlockInteractions("BadBlockPlace", ConfigFile.BBP_enabled, true, ConfigFile.BBP_max_vl));
+        checks.add(new VerticalMovement("VerticalMovement", ConfigFile.VRTMovement_enabled, ConfigFile.VRTMovement_max_vl));
+        checks.add(new GroundSpeed("GroundSpeed", ConfigFile.GroundSpeed_enabled, ConfigFile.GroundSpeed_max_vl));
+        checks.add(new TimeBasedSpeed("TimeBasedSpeed", ConfigFile.TimeBasedSpeed_enabled, ConfigFile.TimeBasedSpeed_max_vl));
+        checks.add(new IrregularPositions("Position", ConfigFile.IRP_enabled, ConfigFile.IRP_max_vl));
+        checks.add(new ElytraFLY("ElytraFly", ConfigFile.ElytraFly_enabled, ConfigFile.ElytraFly_max_vl));
+        checks.add(new PredictiveFly("PredictiveFly", ConfigFile.FLY_enabled, ConfigFile.FLY_max_vl));
+        checks.add(new AirFriction("AirFriction", ConfigFile.SpeedA_enabled, ConfigFile.SpeedA_max_vl));
+        checks.add(new GroundSpoof("GroundSpoof", ConfigFile.GSP_enabled, ConfigFile.GSP_max_vl));
+        checks.add(new Vehicle("Vehicle", ConfigFile.BoatFLY_enabled, ConfigFile.BoatFLY_max_vl));
+        checks.add(new BadPacketsA("Packet", ConfigFile.BPA_enabled, ConfigFile.BPA_max_vl));
+        checks.add(new BlockReach("Interaction", ConfigFile.BBP_enabled, ConfigFile.BBP_max_vl));
+        checks.add(new HitReach("Reach", ConfigFile.HitReach_enabled, ConfigFile.HitReach_max_vl));
+        checks.add(new Timer("Timer", true, 30));
 
     }
-
     public List<Actions> getChecks() {
         return checks;
     }

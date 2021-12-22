@@ -5,49 +5,78 @@
 #|      |||   ||   ||   ||    ,---||    ||    |   |  |#
 #|  `---'``   '`---|`---'`---'`---^`    ``---'`---|  |#
 #|             `---'                          `---'  |#
-#|                       Recode Version 17.4 STABLE  |#
+#|                      Recode Version 22.01 STABLE  |#
 #######################################################
-
-#_____________Checks_____________#
+# All movement checks are currently stable.
+# AntiFalse positive period in this version is 2 min,
+# this will improve over time.
+# Name and description of every check.
 Movement:
-  Fly:
+  # Effective fast fly check.
+  PredictiveFly:
     enabled: true
     setback: true
     max_vl: 10
-
-  IrregularPositions:
+  # Precise position check.
+  Positions:
     enabled: true
     setback: true
     max_vl: 15
-
+  # Vertical movement check, for situations when
+  # effective fly check cannot be applied.
   VerticalMovement:
     enabled: true
     setback: true
     max_vl: 15
-
-  SpeedA:
+  # Air friction check, useful for speed, and
+  # for other cheat modules that are poorly designed.
+  Friction:
     enabled: true
     setback: true
     max_vl: 15
-
-  BoatFly:
+  # XZ ground speed check.
+  Speed:
+    enabled: true
+    setback: true
+    max_vl: 50
+  # Useful for timer, or other bypassing cheat modules.
+  TimeBasedSpeed:
+    enabled: true
+    freq-offset: 0
+    setback: true
+    max_vl: 10
+  # Useful check for boat movement, since it's client sided.
+  #   Note that this check will disable itself if anarchy mode is enabled, and the tps is fine.
+  Vehicle:
     enabled: true
     setback: true
     max_vl: 8
-
+  # Elytra movement check.
+  #   Note that this check will disable itself if anarchy mode is enabled, and the tps is fine.
+  ElytraFly:
+    enabled: true
+    setback: true
+    max_vl: 30
+# This check is looking for invalid values sent by the client
+#   these invalid values can indicate that the player is using a cheat client.
 ClientData:
   GroundSpoof:
     enabled: true
     damage: false
     setback: true
     max_vl: 6
-
+# Player interactions.
 Interactions:
-  BadBlockPlace:
+  HitReach:
+    enabled: true
+    cancel: true
+    max_vl: 10
+  BlockInteract:
     enabled: true
     cancel: true
     max_vl: 5
-
+  # This check currently does not exists.
+  #   This check is heavily in development.
   Packet:
     BadPacketsA:
       enabled: true
@@ -55,15 +84,24 @@ Interactions:
       max_vl: 3
 
 # Settings
-pushdown-velocity: -1
-# Should flags be visible in the console?
+#   Enables you to intentionally allow players use some cheats, like ElytraFly, EntitySpeed, BoatFly, until it doesn't affect the server's performance.
+#   If it does, singularity will try to prevent fast chunk loading, by applying stronger checks for these type of cheats.
+#   Note that this option will disable some of the checks.
+anarchy-mode:
+  enabled: false
+  #   Warn player before teleport, since the player could be high in the sky with BoatFly.
+  vehicle-setback-delay: 60
+  before-teleport-message: "Since the server is lagging, please slow down, or else you will be teleported out of your vehicle."
+# Should alerts be visible from the console?
+#   If you have an anarchy server, I really suggest you to turn this off since it can cause lag.
 console-log: true
-# Kick when player reaches max_vl.
+# Simple kick. Fires when player reaches max_vl.
 kick-enabled: false
-# Displayed message when kicked for detection.
+# Kick message.
 kick-message: "&8[&5⌛&8] &7Singularity cheat detection."
-
-
+# Run console command when player reaches max_vl.
+run-console-command: false
+command: "kick %player%"
 
 
 

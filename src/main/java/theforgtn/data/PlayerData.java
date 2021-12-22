@@ -8,37 +8,17 @@ import theforgtn.Main;
 
 public class PlayerData {
     public org.bukkit.entity.Player player;
-    public LivingEntity lastHitEntity;
+    //Hey! I know it seems frustrating, but I can assure you, it IS frustrating. :D
+    public boolean ground, vanillaGround, NearGround, clientGround, inCreative, onBoat, isInWater, jumpBoost, levitation, SlimePosition, IcePosition, FlyLastOnGround, FlyLastLastOnGround, blockAbove, withElytra, standingInBlock, usingRiptide, isLevitating, suspectedByTimeCheck, teleportedByPlugin, GSP_damageGiven, speed_lastOnGround;
+    public int violations, airTicks, groundTicks, ping, velXTicks, velYTicks, velZTicks, mppsEventFired, mpps;
+    public double deltaY, lastFlag, FlyDistY, FlylastDistY, FlypredictedDist, lastElytra, lastSetBackPosReset, TimeBasedSpeed, lastVelocityTaken, lastTeleport, lastOnGround, IRP_tolerance, GSP_damage, VTMlast_deltaY, speed_distX, speed_distZ, speed_dist, speed_lastDist, speed_shiftedLastDist, speed_equalness, speed_scaledEqualness, lastOnFeet, TBSFreq, TBSBorder, elyChunkX, elyChunkY, elyChunkZ, elyX, elyY, elyZ, elyLastdeltaXZ, elyLastDeltaY ,mppsLastEventCount, mppslastPacket, mppsLastReset;
+    public float USP_X, USP_Y, USP_Z, USP_YAW,  USP_PITCH, SetBackX, SetBackY, SetBackZ, groundX, groundZ, groundY, deltaXZ, SlimeX, SlimeZ, IceX, IceZ,BoatX, BoatY, BoatZ, BlockAboveX, BlockAboveZ, vl_reset_time, TBSpeedX, TBSpeedZ, TBSpeedXZ, HMLastXZ;
 
-    //Universal values
-    public boolean ground, clientGround, inCreative, onBoat, isInWater, jumpBoost, levitation, teleported;
-    public int violations, airTicks, groundTicks, ping;
-    public double deltaY, lastFlag;
-    public float USP_X, USP_Y, USP_Z, USP_YAW, USP_PITCH, deltaXZ;
-    //Velocity
-    public float lastVelocityTaken;
-    public int velXTicks;
-
-    //IRP
-    public double IRP_tolerance;
-    //GSP
-    public double GSP_damage;
-    public int GSP_Buffer;
-    //VerticalMove
-    public double VTMlast_deltaY;
-    //Speed
-    public double speed_distX ,speed_distZ, speed_dist, speed_lastDist, speed_shiftedLastDist, speed_equalness, speed_scaledEqualness;
-    public boolean speed_lastOnGround;
-
-    //BlockInteractions
-
+    //Constructor
     public PlayerData(org.bukkit.entity.Player player) {
         this.player = player;
         new BukkitRunnable() {
-            public void run() {
-
-            }
+            public void run() {}
         }.runTaskTimer(Main.getInstance(), 0L, 1L);
     }
-
 }

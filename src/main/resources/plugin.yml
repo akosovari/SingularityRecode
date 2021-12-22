@@ -1,5 +1,6 @@
-name: SingularityRecoded
-version: ${project.version}
+name: Singularity
+authors: [TheforgTN]
+version: 22.04
 main: theforgtn.Main
 api-version: 1.17
 commands:

@@ -1,6 +1,6 @@
 name: Singularity
 authors: [TheforgTN]
-version: 22.04
+version: 24.02
 main: theforgtn.Main
 api-version: 1.17
 commands:

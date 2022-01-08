@@ -94,7 +94,7 @@ public class MoveEvents implements Listener {
         Material mc = event.getPlayer().getLocation().subtract(0, 0, 0).getBlock().getType();
         Material m = event.getPlayer().getLocation().subtract(0, 1, 0).getBlock().getType();
         //USP
-        if (data.NearGround|| data.ground || data.onBoat || m == Material.VINE || m == Material.LADDER  || data.SlimePosition || m == Material.TWISTING_VINES || m == Material.WATER || m == Material.LILY_PAD || abs(data.velXTicks) > 2 || abs(data.velYTicks) > 2 || abs(data.velZTicks) > 2 || data.levitation || data.isInWater || data.airTicks < 5) {
+        if (data.NearGround || data.vanillaGround || (data.clientGround && data.ground)  || data.onBoat || m == Material.VINE || m == Material.LADDER  || data.SlimePosition || m == Material.TWISTING_VINES || m == Material.WATER || m == Material.LILY_PAD || abs(data.velXTicks) > 2 || abs(data.velYTicks) > 2 || abs(data.velZTicks) > 2 || data.levitation || data.isInWater || data.airTicks < 5) {
             data.USP_X = (float) event.getPlayer().getLocation().getBlockX();
             data.USP_Y = (float) event.getPlayer().getLocation().getBlockY();
             data.USP_Z = (float) event.getPlayer().getLocation().getBlockZ();

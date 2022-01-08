@@ -1,20 +1,17 @@
 package theforgtn.checks.packet;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerMoveEvent;
-import theforgtn.Actions;
+import theforgtn.ReactWith;
 import theforgtn.data.ConfigFile;
 import theforgtn.Main;
 import theforgtn.data.PlayerData;
-import theforgtn.events.MoveEvents;
 
 import static java.lang.Math.abs;
 
-public class BadPacketsA extends Actions {
+public class BadPacketsA extends ReactWith {
 
 
 
@@ -28,16 +25,12 @@ public class BadPacketsA extends Actions {
         if(!enabled || !Main.getInstance().enabled){ return;}
 
         if(Math.abs(player.getLocation().getPitch()) > 90){
-            flag(player);
-            if(ConfigFile.BPA_cancel){
-                player.teleport(new Location(player.getWorld(), data.USP_X, data.USP_Y, data.USP_Z, data.USP_YAW, data.USP_PITCH));
-            }
+            flag(player,0);
+            SetBack(player,1);
             }
         if(Math.abs(player.getLocation().getPitch()) < -90){
-            flag(player);
-            if(ConfigFile.BPA_cancel){
-                player.teleport(new Location(player.getWorld(), data.USP_X, data.USP_Y, data.USP_Z, data.USP_YAW, data.USP_PITCH));
-            }
+            flag(player,0);
+            SetBack(player,1);
         }
     }
 }

@@ -54,7 +54,8 @@ public class OtherEvents implements Listener {
         PlayerData data = Main.getInstance().getDataManager().getDataPlayer(player.getPlayer());
         Main.getInstance().getDataManager().add(player);
         data.usingRiptide = true;
-
+        data.TBSpeedX = (float) event.getPlayer().getLocation().getX();
+        data.TBSpeedZ= (float) event.getPlayer().getLocation().getZ();
         data.elyChunkX = data.elyX = player.getLocation().getX();
         data.elyChunkY = data.elyY =player.getLocation().getY();
         data.elyChunkZ = data.elyZ = player.getLocation().getZ();

@@ -3,14 +3,14 @@ import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerMoveEvent;
-import theforgtn.Actions;
+import theforgtn.ReactWith;
 import theforgtn.data.ConfigFile;
 import theforgtn.Main;
 import theforgtn.data.PlayerData;
 
 import static java.lang.Math.abs;
 
-public class VerticalMovement extends Actions {
+public class VerticalMovement extends ReactWith {
     public VerticalMovement(String name, boolean enabled, int max) { super(name, enabled, max); }
 
     @EventHandler(priority = EventPriority.HIGHEST)
@@ -18,27 +18,30 @@ public class VerticalMovement extends Actions {
         org.bukkit.entity.Player player = event.getPlayer();
         PlayerData data = Main.getInstance().getDataManager().getDataPlayer(player);
         if (!enabled || data.withElytra || data.inCreative || player.getAllowFlight() || player.isInsideVehicle() || player.isInWater() || player.isGliding() || data.usingRiptide || data.clientGround) { return; }
+        // STEP
+        if(data.deltaY > 0.5 && data.velYTicks > 0.1){
+            flag(player,0);
+            SetBack(player,3);
+        }
+        // Position
         if (abs(abs(player.getLocation().getX()) - Math.abs(data.USP_X)) > 1 || abs(abs(player.getLocation().getZ()) - Math.abs(data.USP_Z)) > 1) {
             if (data.deltaY == data.VTMlast_deltaY) {
                 if (1000 < System.currentTimeMillis() - data.lastOnGround) {
-                    flag(player);
-                    if (ConfigFile.VRTMovement_Setback) {
-                        player.teleport(new Location(event.getPlayer().getWorld(), data.SetBackX, data.SetBackY, data.SetBackZ, data.USP_YAW, data.USP_PITCH));
-                    }
+                    flag(player,0);
+                    SetBack(player,3);
+
                     if (data.deltaXZ == data.HMLastXZ || Math.abs(data.deltaY) < 0.1) {
-                        flag(player);
-                        if (ConfigFile.VRTMovement_Setback) {
-                            player.teleport(new Location(player.getWorld(), data.SetBackX, data.SetBackY, data.SetBackZ, data.USP_YAW, data.USP_PITCH));
-                        }
+                        flag(player,0);
+                        SetBack(player,3);
+
                     }
-                } data.lastFlag = System.currentTimeMillis();
+                }
             }
             if (abs(abs(player.getLocation().getX()) - Math.abs(data.USP_X)) > 10 || abs(abs(player.getLocation().getZ()) - Math.abs(data.USP_Z)) > 10) {
                 if(data.deltaXZ == data.HMLastXZ) {
-                    flag(player);
-                    if (ConfigFile.VRTMovement_Setback) {
-                        player.teleport(new Location(player.getWorld(), data.SetBackX, data.SetBackY, data.SetBackZ, data.USP_YAW, data.USP_PITCH));
-                    }
+                    flag(player,0);
+                    SetBack(player,3);
+
                 }
             }
 

@@ -1,18 +1,10 @@
 package theforgtn;
 
-import io.netty.channel.*;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.craftbukkit.v1_17_R1.CraftServer;
-import org.bukkit.craftbukkit.v1_17_R1.entity.CraftEntity;
-import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.HandlerList;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 import theforgtn.checks.CheckManager;
@@ -20,6 +12,7 @@ import theforgtn.checks.packet.PacketEvents;
 import theforgtn.data.DataManager;
 import theforgtn.events.MoveEvents;
 import theforgtn.events.OtherEvents;
+import theforgtn.events.SetBackPositions;
 
 public class Main extends JavaPlugin {
     private static Main instance;
@@ -40,6 +33,7 @@ public class Main extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new PacketEvents(), this);
         Bukkit.getPluginManager().registerEvents(new MoveEvents(), this);
         Bukkit.getPluginManager().registerEvents(new OtherEvents(), this);
+        Bukkit.getPluginManager().registerEvents(new SetBackPositions(), this);
         getConfig().options().copyDefaults(true);
         saveDefaultConfig();
         instance = this;

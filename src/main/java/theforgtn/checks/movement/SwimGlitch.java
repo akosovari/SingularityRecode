@@ -13,6 +13,7 @@ public class SwimGlitch extends Actions {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onJoin(PlayerJoinEvent event) {
+        if(!enabled || !Main.getInstance().enabled) { return; }
         org.bukkit.entity.Player player = event.getPlayer();
         PlayerData data = Main.getInstance().getDataManager().getDataPlayer(player);
         player.getScheduler().runAtFixedRate(Main.getInstance(), scheduledTask -> {

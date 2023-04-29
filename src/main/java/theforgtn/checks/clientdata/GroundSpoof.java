@@ -4,7 +4,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerMoveEvent;
 import theforgtn.Main;
-import theforgtn.ReactWith;
+import theforgtn.Actions;
 import theforgtn.data.PlayerData;
 
 import java.util.HashMap;
@@ -12,13 +12,11 @@ import java.util.HashMap;
 import static java.lang.Math.abs;
 
 
-public class GroundSpoof extends ReactWith {
+public class GroundSpoof extends Actions {
     public GroundSpoof(String name, boolean enabled, int max) { super(name, enabled, max); }
     HashMap<String, Boolean> lastValues = new HashMap<String, Boolean>();
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onMove(PlayerMoveEvent event) {
-        // Yeah this random dude really uses a hashmap for a simple groundspoof check.
-        // Btw I use arch
         org.bukkit.entity.Player player = event.getPlayer();
         PlayerData data = Main.getInstance().getDataManager().getDataPlayer(player);
         if(!enabled || !Main.getInstance().enabled || data.inCreative || data.SlimePosition || data.onBoat || player.isInsideVehicle() || player.getLocation().getY() < 0){ return; }

@@ -1,17 +1,15 @@
 package theforgtn.checks.movement;
-import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.potion.PotionEffectType;
-import theforgtn.ReactWith;
-import theforgtn.data.ConfigFile;
+import theforgtn.Actions;
 import theforgtn.Main;
 import theforgtn.data.PlayerData;
 
 import static java.lang.Math.abs;
 
-public class GroundSpeed extends ReactWith {
+public class GroundSpeed extends Actions {
     public GroundSpeed(String name, boolean enabled, int max) { super(name, enabled, max); }
 
     @EventHandler(priority = EventPriority.HIGHEST)

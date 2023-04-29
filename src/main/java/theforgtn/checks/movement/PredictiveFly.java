@@ -1,18 +1,15 @@
 package theforgtn.checks.movement;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerMoveEvent;
-import theforgtn.ReactWith;
-import theforgtn.data.ConfigFile;
+import theforgtn.Actions;
 import theforgtn.Main;
 import theforgtn.data.PlayerData;
 
 import static java.lang.Math.abs;
 
-public class PredictiveFly extends ReactWith {
+public class PredictiveFly extends Actions {
     public PredictiveFly(String name, boolean enabled, int max) {
         super(name, enabled, max);
     }

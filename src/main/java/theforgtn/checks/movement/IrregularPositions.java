@@ -1,16 +1,15 @@
 package theforgtn.checks.movement;
-import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerMoveEvent;
-import theforgtn.ReactWith;
+import theforgtn.Actions;
 import theforgtn.Main;
 import theforgtn.data.PlayerData;
 
 import static java.lang.Math.abs;
 
-public class IrregularPositions extends ReactWith {
+public class IrregularPositions extends Actions {
     public IrregularPositions(String name, boolean enabled, int max) { super(name, enabled, max); }
 
     @EventHandler(priority = EventPriority.HIGHEST)

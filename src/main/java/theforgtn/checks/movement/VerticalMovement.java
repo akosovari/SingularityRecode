@@ -1,16 +1,14 @@
 package theforgtn.checks.movement;
-import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerMoveEvent;
-import theforgtn.ReactWith;
-import theforgtn.data.ConfigFile;
+import theforgtn.Actions;
 import theforgtn.Main;
 import theforgtn.data.PlayerData;
 
 import static java.lang.Math.abs;
 
-public class VerticalMovement extends ReactWith {
+public class VerticalMovement extends Actions {
     public VerticalMovement(String name, boolean enabled, int max) { super(name, enabled, max); }
 
     @EventHandler(priority = EventPriority.HIGHEST)

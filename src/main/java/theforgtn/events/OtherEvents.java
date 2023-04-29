@@ -1,5 +1,7 @@
 package theforgtn.events;
 
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -30,6 +32,18 @@ public class OtherEvents implements Listener {
         data.elyChunkZ = data.elyZ = player.getLocation().getZ();
         data.elyLastdeltaXZ = 0;
         data.elyLastDeltaY = 0;
+
+        player.getScheduler().runAtFixedRate(Main.getInstance(), scheduledTask -> {
+            // PlayerSpeed
+            if(data.last_location != null && player.getLocation().getWorld() == data.last_location.getWorld()){
+                if(player.getLocation() != data.last_location){
+                    Float delta_time = (float) (System.currentTimeMillis() - data.last_check)/1000;
+                    data.speed =  (double) player.getLocation().distance(data.last_location)/delta_time;
+                }
+            }
+            data.last_check = System.currentTimeMillis();
+            data.last_location = player.getLocation();
+        }, null, 1L, 1L);
 
     }
     @EventHandler(priority = EventPriority.LOWEST)

@@ -1,17 +1,15 @@
 package theforgtn.checks.packet;
 
-import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerMoveEvent;
-import theforgtn.ReactWith;
-import theforgtn.data.ConfigFile;
+import theforgtn.Actions;
 import theforgtn.Main;
 import theforgtn.data.PlayerData;
 
 import static java.lang.Math.abs;
 
-public class BadPacketsA extends ReactWith {
+public class BadPacketsA extends Actions {
 
 
 

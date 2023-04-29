@@ -1,6 +1,5 @@
 package theforgtn.events;
 
-import net.minecraft.server.MinecraftServer;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -49,6 +48,7 @@ public class MoveEvents implements Listener {
             data.velYTicks = 0;
             data.velZTicks = 0;
         }
+
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
@@ -153,6 +153,8 @@ public class MoveEvents implements Listener {
             data.SetBackX = (float) event.getPlayer().getLocation().getX();
             data.SetBackY = (float) event.getPlayer().getLocation().getY();
             data.SetBackZ = (float) event.getPlayer().getLocation().getZ();
+            data.SetBackPos = player.getLocation();
+
             data.lastSetBackPosReset = System.currentTimeMillis();
         }
     }

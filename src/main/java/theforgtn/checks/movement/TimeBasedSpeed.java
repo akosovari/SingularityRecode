@@ -1,17 +1,16 @@
 package theforgtn.checks.movement;
-import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.potion.PotionEffectType;
-import theforgtn.ReactWith;
-import theforgtn.data.ConfigFile;
+import theforgtn.Actions;
 import theforgtn.Main;
 import theforgtn.data.PlayerData;
 
 import static java.lang.Math.abs;
 
-public class TimeBasedSpeed extends ReactWith {
+public class TimeBasedSpeed extends Actions {
     public TimeBasedSpeed(String name, boolean enabled, int max) { super(name, enabled, max); }
 
     @EventHandler(priority = EventPriority.HIGHEST)
@@ -44,5 +43,13 @@ public class TimeBasedSpeed extends ReactWith {
             data.TBSpeedZ= (float) player.getLocation().getZ();
             data.TimeBasedSpeed = System.currentTimeMillis();
         }
+
+    }
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onJoin(PlayerJoinEvent event) {
+        org.bukkit.entity.Player player = event.getPlayer();
+        PlayerData data = Main.getInstance().getDataManager().getDataPlayer(player);
+        player.getScheduler().runAtFixedRate(Main.getInstance(), scheduledTask -> {
+        }, null, 3L, 1L);
     }
 }

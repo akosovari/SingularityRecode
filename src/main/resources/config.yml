@@ -5,38 +5,112 @@
 #|      |||   ||   ||   ||    ,---||    ||    |   |  |#
 #|  `---'``   '`---|`---'`---'`---^`    ``---'`---|  |#
 #|             `---'                          `---'  |#
-#|                      Recode Version 24.03 STABLE  |#
+#|                      Recode Version 26.00 RELEASE |#
 #######################################################
-# Singularity is currently stable and running in production.
-# Movement options.
-movement:
-  enabled: true
-  prevent: true
-  antifalse: true
-  max-vl: 30
-# Interaction options.
-interaction:
-  enabled: true
-  prevent: true
-  antifalse: true
-  max-vl: 10
+# See violations with singularity.verbose
 #
-# Settings
-#   Enables you to intentionally allow players use some cheats, like ElytraFly, EntitySpeed, until it doesn't affect the server's performance.
-#   If it does, singularity will try to prevent fast chunk loading, by applying stronger checks for these type of cheats.
-#   Note that this option will disable some of the checks.
+# There is a simple explanation for each check above
+movement:
+  intercept: true
+  # basic movement prediction
+  predictivefly:
+    enabled: true
+    max_vl: 20
+  # flags for 0 y velocity
+  verticalmovement:
+    enabled: true
+    max_vl: 20
+  # checks if a player is in a possible location
+  position:
+    enabled: true
+    max_vl: 20
+  # checks the player's friction in air
+  airfriction:
+    enabled: true
+    max_vl: 20
+  # max location difference per tick
+  locdiffpertick:
+    enabled: true
+    max_vl: 20
+  # event based ground speed check
+  groundspeed:
+    enabled: true
+    max_vl: 20
+  # time based speed check
+  timebasedspeed:
+    enabled: true
+    max_vl: 20
+  # elytra check, searches for repeating patterns in velocity
+  elytrafly:
+    enabled: true
+    max_vl: 20
+  # this check only applied if a player is riding / inside vehicle
+  vehicle:
+    enabled: true
+    max_vl: 20
+  # checks if client side ground matches the server side ground
+  groundspoof:
+    enabled: true
+    max_vl: 20
+  # checks if a client enters glide mode, and quits to fast
+  glideglitch:
+    enabled: true
+    max_vl: 20
+  # checks if a client enters swim mode, and quits to fast
+  swimglitch:
+    enabled: true
+    max_vl: 20
+#
+interaction:
+  intercept: true
+  # checks the distance between the player, and the placed block
+  blockreach:
+    enabled: true
+    max_vl: 20
+  # checks the distance between the player, and the hit entity
+  reach:
+    enabled: true
+    max_vl: 20
+  # checks if a player sends correct look packets
+  packet:
+    enabled: true
+    max_vl: 20
+#
+# Interception settings
+intercept:
+  # enable / disable setback anti false system
+  antifalse: true
+  # Enable this with caution, beta feature. (might not even work)
+  timerollback: false
+#
+# Enables you to intentionally allow players to use some cheats, like ElytraFly, EntitySpeed.
+# The values are in m/s for example, this configuration will allow elytrafly under 20m/s
 anarchy-mode:
   enabled: false
+  elytrafly: 25
+  boat: 16
+  minecart: 10
+  donkey: 18
+  horse: 20
+  pig: 16
+  skeleton_horse: 22
+  ev_else: 20
+#
 # Show debug messages (leave this on disabled)
 debug: false
+#
 # Should alerts be visible from the console?
 console-log: true
+#
 # Simple kick. Fires when player reaches max_vl.
 kick-enabled: false
+#
 # Kick message.
 kick-message: "&8[&5⌛&8] &7Singularity cheat detection."
+#
 # Run console command when player reaches max_vl.
 run-console-command: false
+#
 # Use %player% to get the player name, also you can use %type% to get the check.
 command: "kick %player% You have been kicked because you failed %type% check."
 

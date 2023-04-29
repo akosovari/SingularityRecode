@@ -1,8 +1,9 @@
 name: Singularity
 authors: [TheforgTN]
-version: 24.03
+version: 26.00
 main: theforgtn.Main
-api-version: 1.17
+api-version: 1.19
+folia-supported: true
 commands:
   singularity:
     description: plugin version

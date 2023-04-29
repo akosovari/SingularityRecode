@@ -14,12 +14,12 @@ import java.util.WeakHashMap;
 
 import static org.bukkit.Bukkit.getLogger;
 
-public abstract class ReactWith implements Listener {
+public abstract class Actions implements Listener {
     public Map<Player, Integer> violations = new WeakHashMap<>();
     protected String name;
     protected boolean enabled;
     protected int max;
-    public ReactWith(String name, boolean enabled, int max) {
+    public Actions(String name, boolean enabled, int max) {
         this.name = name;
         this.enabled = enabled;
         this.max = max;
@@ -32,7 +32,7 @@ public abstract class ReactWith implements Listener {
             ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
             PlayerData data = Main.getInstance().getDataManager().getDataPlayer(player.getPlayer());
             // False positive system
-            if(System.currentTimeMillis() - data.last_flag < 5000 && System.currentTimeMillis() - data.last_flag < 250 || !ConfigFile.movement_antifalse) {
+            if(System.currentTimeMillis() - data.last_flag < 5000 && System.currentTimeMillis() - data.last_flag < 250 || !ConfigFile.intercept_antifalse_enabled) {
                 // Vl handler
                 int violations = this.violations.getOrDefault(player, 0) + 1;
                 // Logging
@@ -92,25 +92,29 @@ public abstract class ReactWith implements Listener {
     }
     // SetBack System
     protected void SetBack(Player player, int type) {
-        if(ConfigFile.movement_prevent) {
+        if(ConfigFile.movement_intercept_enabled) {
             PlayerData data = Main.getInstance().getDataManager().getDataPlayer(player.getPlayer());
-            if(System.currentTimeMillis() - data.last_setback < 5000 && System.currentTimeMillis() - data.last_setback < 250 || !ConfigFile.movement_antifalse) {
-                if (type == 0) {
+            if(System.currentTimeMillis() - data.last_setback < 5000 && System.currentTimeMillis() - data.last_setback < 250 || !ConfigFile.intercept_antifalse_enabled) {
+                if (type == 0 && player.getWorld().equals(data.SetBackPos.getWorld())) {
                     // Normal setback
-                    player.teleport(new Location(player.getWorld(), data.SetBackX, data.SetBackY, data.SetBackZ, data.USP_YAW, data.USP_PITCH));
+                    player.teleportAsync(data.SetBackPos);
                 }
                 if (type == 1) {
                     // Vehicle setback
                     if (player.getLocation().getY() - player.getWorld().getHighestBlockYAt(player.getLocation()) > 0) {
-                        player.teleport(new Location(player.getWorld(), player.getLocation().getX(), player.getWorld().getHighestBlockYAt(player.getLocation()) + 2, player.getLocation().getZ(), player.getLocation().getYaw(), player.getLocation().getPitch()));
+                        player.teleportAsync(new Location(player.getWorld(), player.getLocation().getX(), player.getWorld().getHighestBlockYAt(player.getLocation()) + 2, player.getLocation().getZ(), player.getLocation().getYaw(), player.getLocation().getPitch()));
+
                     } else {
-                        player.teleport(new Location(player.getWorld(), player.getLocation().getX(), player.getLocation().getY(), player.getLocation().getZ(), player.getLocation().getYaw(), player.getLocation().getPitch()));
+                        player.teleportAsync(new Location(player.getWorld(), player.getLocation().getX(), player.getLocation().getY(), player.getLocation().getZ(), player.getLocation().getYaw(), player.getLocation().getPitch()));
                     }
                 }
+                if (type == 4 && player.getLocation().getWorld().equals(data.last_full_chunk.getWorld())) {
+                    player.teleportAsync(data.last_full_chunk);
+                }
             }
-            if (type == 3) {
+            if (type == 3 && player.getWorld().equals(data.SetBackPos.getWorld())) {
                 // NoFalse
-                player.teleport(new Location(player.getWorld(), data.SetBackX, data.SetBackY, data.SetBackZ, data.USP_YAW, data.USP_PITCH));
+                player.teleportAsync(data.SetBackPos);
             }
             // Past setback
             data.last_setback = System.currentTimeMillis();

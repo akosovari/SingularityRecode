@@ -8,7 +8,6 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 import theforgtn.checks.CheckManager;
-import theforgtn.checks.packet.PacketEvents;
 import theforgtn.data.DataManager;
 import theforgtn.events.MoveEvents;
 import theforgtn.events.OtherEvents;
@@ -25,12 +24,10 @@ public class Main extends JavaPlugin {
     }
     public static double PluginEnabled;
     public double tickTime;
-    public double lastTick;
     public boolean tps_protection;
     @Override
     public void onEnable() {
         PluginDescriptionFile pdf = this.getDescription();
-        Bukkit.getPluginManager().registerEvents(new PacketEvents(), this);
         Bukkit.getPluginManager().registerEvents(new MoveEvents(), this);
         Bukkit.getPluginManager().registerEvents(new OtherEvents(), this);
         Bukkit.getPluginManager().registerEvents(new SetBackPositions(), this);
@@ -39,38 +36,20 @@ public class Main extends JavaPlugin {
         instance = this;
         checkManager = new CheckManager();
         dataManager = new DataManager();
-        getServer().getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
-            @Override
-            public void run() {
-                tickTime = (System.currentTimeMillis() - lastTick)/80;
-                tps_protection = tickTime > 51;
-                lastTick = System.currentTimeMillis();
-            }
-        }, 20L, 80L);
-        getServer().getScheduler().scheduleSyncDelayedTask(this, new Runnable() {
-            @Override
-            public void run() {
-                // Fancy console section
-                getLogger().info("|---------------------------------------------------|");
-                getLogger().info("|                                                   |");
-                getLogger().info("|  ,---.o               |              o|           |");
-                getLogger().info("|  `---..,---.,---..   .|    ,---.,---..|--- ,   .  |");
-                getLogger().info("|      |||   ||   ||   ||    ,---||    ||    |   |  |");
-                getLogger().info("|  `---'``   '`---|`---'`---'`---^`    ``---'`---|  |");
-                getLogger().info("|             `---'                          `---'  |");
-                getLogger().info("|                       Recode Version "+pdf.getVersion()+" STABLE |");
-                getLogger().info("|---------------------------------------------------|");
-                if (Bukkit.getBukkitVersion().contains("1.17") || Bukkit.getBukkitVersion().contains("1.18")) {
-                    getLogger().info("| Successfully enabled packet check. [" + Bukkit.getBukkitVersion() + "]");
-                    native_version = true;
-                } else {
-                    getLogger().warning("| Singularity failed to enable packet check. Unsupported version! [" + Bukkit.getBukkitVersion() + "]");
-                    native_version = false;
-                }
-                PluginEnabled = System.currentTimeMillis();
-                enabled = true;
-            }
-        }, 40L);
+        // Fancy console section
+        getLogger().info("|---------------------------------------------------|");
+        getLogger().info("|                                                   |");
+        getLogger().info("|  ,---.o               |              o|           |");
+        getLogger().info("|  `---..,---.,---..   .|    ,---.,---..|--- ,   .  |");
+        getLogger().info("|      |||   ||   ||   ||    ,---||    ||    |   |  |");
+        getLogger().info("|  `---'``   '`---|`---'`---'`---^`    ``---'`---|  |");
+        getLogger().info("|             `---'                          `---'  |");
+        getLogger().info("|                          Folia recode "+pdf.getVersion()+" STABLE |");
+        getLogger().info("|---------------------------------------------------|");
+        getLogger().warning("| Singularity's config has been rewritten with 26.00, please delete the old one!");
+        getLogger().warning("| Server version [" + Bukkit.getBukkitVersion() + "]");
+        PluginEnabled = System.currentTimeMillis();
+        enabled = true;
     }
     @Override
     public void onDisable() {
@@ -82,7 +61,7 @@ public class Main extends JavaPlugin {
 
     public DataManager getDataManager() { return dataManager; }
     // Hello there!
-    // Since you are looking a code of an anticheat, I hope you have a great life. :)
+    // Since you are looking at a code of an anticheat, I hope you have a great life. :)
     // Jokes aside, prepare for your biggest fears, and look, this abnormal dude is uses a boolean as a command listener. :)
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         PluginDescriptionFile pdf = this.getDescription();

@@ -1,23 +1,21 @@
 package theforgtn.checks.movement;
 
-import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.potion.PotionEffectType;
-import theforgtn.ReactWith;
+import theforgtn.Actions;
 import theforgtn.Main;
-import theforgtn.data.ConfigFile;
 import theforgtn.data.PlayerData;
 import static java.lang.Math.abs;
 
-public class AirFriction extends ReactWith {
+public class AirFriction extends Actions {
     public AirFriction(String name, boolean enabled, int max) { super(name, enabled, max); }
     private double lastDist;
     float friction = 0.98F;
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerMove(PlayerMoveEvent event) {
-        // Thanks for Jonhan, look up him on youtube, he is amaising. :)
+        // Thanks to Jonhan, look up him on youtube. :)
         org.bukkit.entity.Player player = event.getPlayer();
         PlayerData data = Main.getInstance().getDataManager().getDataPlayer(player);
         if(!enabled || !Main.getInstance().enabled || data.IcePosition || player.hasPotionEffect(PotionEffectType.SPEED) || player.hasPotionEffect(PotionEffectType.DOLPHINS_GRACE) || data.withElytra || data.usingRiptide || player.isInsideVehicle() || player.getAllowFlight() || abs(data.velXTicks) > 2 || abs(data.velYTicks) > 2 || abs(data.velZTicks) > 2 || data.SlimePosition){ return; }

@@ -1,0 +1,55 @@
+#######################################################
+#|                                                   |#
+#|  ,---.o               |              o|           |#
+#|  `---..,---.,---..   .|    ,---.,---..|--- ,   .  |#
+#|      |||   ||   ||   ||    ,---||    ||    |   |  |#
+#|  `---'``   '`---|`---'`---'`---^`    ``---'`---|  |#
+#|             `---'                          `---'  |#
+#|                      Recode Version 25.02 HOTFIX  |#
+#######################################################
+# See violations with singularity.verbose
+# Movement checks
+movement:
+  enabled: true
+  prevent: true
+  antifalse: true
+  max-vl: 30
+# Interaction checks
+interaction:
+  enabled: true
+  prevent: true
+  antifalse: true
+  max-vl: 10
+#
+# Settings
+#   Enables you to intentionally allow players to use some cheats, like ElytraFly, EntitySpeed.
+#   The values are in m/s for example, this configuration will allow elytrafly under 20m/s
+anarchy-mode:
+  enabled: false
+  elytrafly: 25
+  boat: 16
+  minecart: 10
+  donkey: 18
+  horse: 20
+  pig: 16
+  skeleton_horse: 22
+  ev_else: 20
+# Show debug messages (leave this on disabled)
+debug: false
+# Should alerts be visible from the console?
+console-log: true
+# Simple kick. Fires when player reaches max_vl.
+kick-enabled: false
+# Kick message.
+kick-message: "&8[&5⌛&8] &7Singularity cheat detection."
+# Run console command when player reaches max_vl.
+run-console-command: false
+# Use %player% to get the player name, also you can use %type% to get the check.
+command: "kick %player% You have been kicked because you failed %type% check."
+
+
+
+
+
+
+

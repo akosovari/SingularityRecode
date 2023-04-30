@@ -6,6 +6,9 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.scheduler.BukkitRunnable;
 import theforgtn.Main;
 
+import java.sql.Time;
+import java.util.HashMap;
+
 public class PlayerData {
     public org.bukkit.entity.Player player;
     //Hey! I know it seems frustrating, but I can assure you, it IS frustrating. :D
@@ -19,6 +22,12 @@ public class PlayerData {
     public double speed, lastSpeed, last_loc_diff, glide_swithc_a_sec, swim_switch_a_sec;
     public long last_check;
     public boolean last_glide, last_swim;
+
+
+
+
+    // ADMIN
+    public boolean verbose;
     //Constructor
     public PlayerData(org.bukkit.entity.Player player) {
         this.player = player;

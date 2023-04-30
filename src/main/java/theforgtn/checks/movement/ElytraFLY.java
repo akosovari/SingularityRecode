@@ -15,29 +15,37 @@ public class ElytraFLY extends Actions {
     public void onMove(PlayerMoveEvent event) {
         org.bukkit.entity.Player player = event.getPlayer();
         PlayerData data = Main.getInstance().getDataManager().getDataPlayer(player);
-        if(!enabled || !Main.getInstance().enabled) { return; }
-        if(player.isGliding() && !(ConfigFile.anarchy_mode_enabled && data.speed < ConfigFile.elytrafly)) {
-            // AntiCheat Section
-            // SetBack
-            if(data.elyLastdeltaXZ < 1.7F && !((event.getTo().getY() - event.getFrom().getY()) == data.elyLastDeltaY && player.getLocation().getPitch() != 90)){
-                data.ely_setback_loc = player.getLocation();
+        try {
+            if (!enabled || !Main.getInstance().enabled) {
+                return;
             }
-            // XZ
-            if (1.7F < data.elyLastdeltaXZ && data.elyLastdeltaXZ == ((double) Math.sqrt(Math.pow(event.getTo().getX() - event.getFrom().getX(), 2) + Math.pow(event.getTo().getZ() - event.getFrom().getZ(), 2)))) {
-                flag(player,0);
-                SetBack(player,4);
-                // player.teleportAsync(new Location(event.getPlayer().getWorld(), data.elyX, data.elyY, data.elyZ, player.getLocation().getYaw(), player.getLocation().getPitch()));
-            }
-            // Y
-            if((event.getTo().getY() - event.getFrom().getY()) == data.elyLastDeltaY && player.getLocation().getPitch() != 90) {
-                flag(player,0);
-                SetBack(player,4);
-                // player.teleportAsync(new Location(event.getPlayer().getWorld(), data.elyX, data.elyY, data.elyZ, player.getLocation().getYaw(), player.getLocation().getPitch()));
-            }
+            if (player.isGliding() && !(ConfigFile.anarchy_mode_enabled && data.speed < ConfigFile.elytrafly)) {
+                // AntiCheat Section
+                // SetBack
+                if (data.elyLastdeltaXZ < 1.7F && !((event.getTo().getY() - event.getFrom().getY()) == data.elyLastDeltaY && player.getLocation().getPitch() != 90)) {
+                    data.ely_setback_loc = player.getLocation();
+                }
+                // XZ
+                if (1.7F < data.elyLastdeltaXZ && data.elyLastdeltaXZ == ((double) Math.sqrt(Math.pow(event.getTo().getX() - event.getFrom().getX(), 2) + Math.pow(event.getTo().getZ() - event.getFrom().getZ(), 2)))) {
+                    flag(player, 0);
+                    SetBack(player, 4);
+                    // player.teleportAsync(new Location(event.getPlayer().getWorld(), data.elyX, data.elyY, data.elyZ, player.getLocation().getYaw(), player.getLocation().getPitch()));
+                }
+                // Y
+                if ((event.getTo().getY() - event.getFrom().getY()) == data.elyLastDeltaY && player.getLocation().getPitch() != 90) {
+                    flag(player, 0);
+                    SetBack(player, 4);
+                    // player.teleportAsync(new Location(event.getPlayer().getWorld(), data.elyX, data.elyY, data.elyZ, player.getLocation().getYaw(), player.getLocation().getPitch()));
+                }
 
-            // Last tick data
-            data.elyLastdeltaXZ = Math.sqrt(Math.pow(event.getTo().getX() - event.getFrom().getX(), 2) + Math.pow(event.getTo().getZ() - event.getFrom().getZ(), 2));
-            data.elyLastDeltaY = event.getTo().getY() - event.getFrom().getY();
+                // Last tick data
+                data.elyLastdeltaXZ = Math.sqrt(Math.pow(event.getTo().getX() - event.getFrom().getX(), 2) + Math.pow(event.getTo().getZ() - event.getFrom().getZ(), 2));
+                data.elyLastDeltaY = event.getTo().getY() - event.getFrom().getY();
+            }
+        } catch (Exception e){
+            if(ConfigFile.debug){
+                Main.getInstance().getLogger().warning("| Generated an exception [" + e.getCause() + "]");
+            }
         }
     }
 }

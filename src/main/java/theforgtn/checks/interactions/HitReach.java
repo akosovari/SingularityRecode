@@ -21,11 +21,18 @@ public class HitReach extends Actions {
         org.bukkit.entity.Player player = ((Player) event.getDamager()).getPlayer();
         PlayerData data = Main.getInstance().getDataManager().getDataPlayer(player);
         //Bukkit.broadcastMessage("Hit dist " + player.getLocation().distance(event.getEntity().getLocation()));
-        if(player.getEyeLocation().distance(event.getEntity().getLocation()) > 3.8){
-            flag(player,1);
-            if(ConfigFile.interaction_intercept_enabled) {
-                event.setCancelled(true);
+        try {
+            if(player.getEyeLocation().distance(event.getEntity().getLocation()) > 3.8){
+                flag(player,1);
+                if(ConfigFile.interaction_intercept_enabled) {
+                    event.setCancelled(true);
+                }
+            }
+        } catch (Exception e){
+            if(ConfigFile.debug){
+                Main.getInstance().getLogger().warning("| Generated an exception [" + e.getCause() + "]");
             }
         }
+
     }
 }

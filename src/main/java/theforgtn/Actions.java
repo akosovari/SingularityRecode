@@ -41,7 +41,8 @@ public abstract class Actions implements Listener {
                 }
                 // Verbose
                 for (Player staff : Bukkit.getOnlinePlayers()) {
-                    if (staff.hasPermission("singularity.verbose") && data.violations > 0) {
+                    PlayerData staff_data = Main.getInstance().getDataManager().getDataPlayer(staff);
+                    if (staff.hasPermission("singularity.admin") && data.violations > 0 && staff_data.verbose) {
                         if (type == 0) {
                             staff.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8[&5⌛&8] &7" + player.getName() + " &7failed &cMovement &7check! &8|&3 " + violations + "&8/&c" + max + " &8" + name));
                         }

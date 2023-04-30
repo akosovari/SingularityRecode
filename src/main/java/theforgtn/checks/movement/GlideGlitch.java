@@ -14,24 +14,32 @@ public class GlideGlitch extends Actions {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onJoin(PlayerJoinEvent event) {
-        if(!enabled || !Main.getInstance().enabled) { return; }
-        org.bukkit.entity.Player player = event.getPlayer();
-        PlayerData data = Main.getInstance().getDataManager().getDataPlayer(player);
-        player.getScheduler().runAtFixedRate(Main.getInstance(), scheduledTask -> {
-            if(player.isGliding() && !(ConfigFile.anarchy_mode_enabled && data.speed < ConfigFile.elytrafly)) {
-                if ((player.isGliding() && !data.last_glide) || (!player.isGliding() && data.last_glide)) {
-                    data.glide_swithc_a_sec++;
-                    if (data.glide_swithc_a_sec > 10) {
-                        flag(player, 0);
-                        SetBack(player, 4);
+        if (!enabled || !Main.getInstance().enabled) {
+            return;
+        }
+        try {
+            org.bukkit.entity.Player player = event.getPlayer();
+            PlayerData data = Main.getInstance().getDataManager().getDataPlayer(player);
+            player.getScheduler().runAtFixedRate(Main.getInstance(), scheduledTask -> {
+                if (player.isGliding() && !(ConfigFile.anarchy_mode_enabled && data.speed < ConfigFile.elytrafly)) {
+                    if ((player.isGliding() && !data.last_glide) || (!player.isGliding() && data.last_glide)) {
+                        data.glide_swithc_a_sec++;
+                        if (data.glide_swithc_a_sec > 10) {
+                            flag(player, 0);
+                            SetBack(player, 4);
+                        }
                     }
+                    data.last_glide = player.isGliding();
                 }
-                data.last_glide = player.isGliding();
-            }
-        }, null, 3L, 1L);
+            }, null, 3L, 1L);
 
-        player.getScheduler().runAtFixedRate(Main.getInstance(), scheduledTask -> {
-            data.glide_swithc_a_sec = 0;
-        }, null, 1L, 20L);
+            player.getScheduler().runAtFixedRate(Main.getInstance(), scheduledTask -> {
+                data.glide_swithc_a_sec = 0;
+            }, null, 1L, 20L);
+        } catch(Exception e) {
+            if(ConfigFile.debug){
+                Main.getInstance().getLogger().warning("| Generated an exception [" + e.getCause() + "]");
+            }
+        }
     }
 }

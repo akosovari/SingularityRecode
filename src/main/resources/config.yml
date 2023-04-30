@@ -5,9 +5,9 @@
 #|      |||   ||   ||   ||    ,---||    ||    |   |  |#
 #|  `---'``   '`---|`---'`---'`---^`    ``---'`---|  |#
 #|             `---'                          `---'  |#
-#|                      Recode Version 26.00 RELEASE |#
+#|                      Recode Version 26.01 RELEASE |#
 #######################################################
-# See violations with singularity.verbose
+# Access in-game admin commands singularity.admin permission.
 #
 # There is a simple explanation for each check above
 movement:

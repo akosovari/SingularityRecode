@@ -4,6 +4,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerMoveEvent;
 import theforgtn.Actions;
 import theforgtn.Main;
+import theforgtn.data.ConfigFile;
 import theforgtn.data.PlayerData;
 
 import static java.lang.Math.abs;
@@ -17,9 +18,15 @@ public class Timer extends Actions {
         org.bukkit.entity.Player player = event.getPlayer();
         PlayerData data = Main.getInstance().getDataManager().getDataPlayer(player);
         if(!enabled || !Main.getInstance().enabled ) { return; }
-        if(data.mpps > 25 && System.currentTimeMillis() - data.lastTeleport > 1000){
-            flag(player,0);
-            SetBack(player,1);
+        try {
+            if (data.mpps > 25 && System.currentTimeMillis() - data.lastTeleport > 1000) {
+                flag(player, 0);
+                SetBack(player, 1);
+            }
+        } catch (Exception e){
+            if(ConfigFile.debug){
+                Main.getInstance().getLogger().warning("| Generated an exception [" + e.getCause() + "]");
+            }
         }
     }
 }

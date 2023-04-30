@@ -1,6 +1,7 @@
 package theforgtn.checks;
 
 import theforgtn.Actions;
+import theforgtn.Main;
 import theforgtn.checks.clientdata.*;
 import theforgtn.checks.interactions.*;
 import theforgtn.checks.movement.*;
@@ -10,8 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CheckManager {
-    private final List<Actions> checks = new ArrayList<>();
+    private List<Actions> checks = new ArrayList<>();
     public CheckManager() {
+        //executions
+        checks.clear();
         checks.add(new VerticalMovement("VerticalMovement", ConfigFile.verticalmovement_enabled, ConfigFile.verticalmovement_max_vl));
         checks.add(new GroundSpeed("GroundSpeed", ConfigFile.groundspeed_enabled, ConfigFile.groundspeed_max_vl));
         checks.add(new TimeBasedSpeed("TimeBasedSpeed", ConfigFile.timebasedspeed_enabled, ConfigFile.timebasedspeed_max_vl));
@@ -27,8 +30,6 @@ public class CheckManager {
         checks.add(new LocDiffPerTick("LocDiffPerTick", ConfigFile.locdiffpertick_enabled, ConfigFile.locdiffpertick_max_vl));
         checks.add(new GlideGlitch("GlideGlitch", ConfigFile.glideglitch_enabled, ConfigFile.glideglitch_max_vl));
         checks.add(new SwimGlitch("SwimGlitch", ConfigFile.swimglitch_enabled, ConfigFile.swimglitch_max_vl));
-        // checks.add(new Timer("Timer", ConfigFile.movement_enabled, ConfigFile.movement_maxvl));
-
     }
     public List<Actions> getChecks() {
         return checks;

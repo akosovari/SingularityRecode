@@ -5,6 +5,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerMoveEvent;
 import theforgtn.Actions;
 import theforgtn.Main;
+import theforgtn.data.ConfigFile;
 import theforgtn.data.PlayerData;
 
 import static java.lang.Math.abs;
@@ -20,15 +21,22 @@ public class BadPacketsA extends Actions {
     public void onMove(PlayerMoveEvent event) {
         org.bukkit.entity.Player player = event.getPlayer();
         PlayerData data = Main.getInstance().getDataManager().getDataPlayer(player);
-        if(!enabled || !Main.getInstance().enabled){ return;}
-
-        if(Math.abs(player.getLocation().getPitch()) > 90){
-            flag(player,0);
-            SetBack(player,1);
+        if (!enabled || !Main.getInstance().enabled) {
+            return;
+        }
+        try {
+            if (Math.abs(player.getLocation().getPitch()) > 90) {
+                flag(player, 0);
+                SetBack(player, 1);
             }
-        if(Math.abs(player.getLocation().getPitch()) < -90){
-            flag(player,0);
-            SetBack(player,1);
+            if (Math.abs(player.getLocation().getPitch()) < -90) {
+                flag(player, 0);
+                SetBack(player, 1);
+            }
+        }catch (Exception e){
+            if(ConfigFile.debug){
+                Main.getInstance().getLogger().warning("| Generated an exception [" + e.getCause() + "]");
+            }
         }
     }
 }

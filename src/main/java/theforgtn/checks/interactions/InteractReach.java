@@ -18,24 +18,36 @@ public class InteractReach extends Actions {
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {
         if(!enabled || !Main.getInstance().enabled){ return; }
-        org.bukkit.entity.Player player = event.getPlayer();
-        PlayerData data = Main.getInstance().getDataManager().getDataPlayer(player);
-        if(player.getEyeLocation().distance(event.getClickedBlock().getLocation()) > 6){
-            flag(player,1);
-            if(ConfigFile.interaction_intercept_enabled) {
-                event.setCancelled(true);
+        try {
+            org.bukkit.entity.Player player = event.getPlayer();
+            PlayerData data = Main.getInstance().getDataManager().getDataPlayer(player);
+            if(player.getEyeLocation().distance(event.getClickedBlock().getLocation()) > 6){
+                flag(player,1);
+                if(ConfigFile.interaction_intercept_enabled) {
+                    event.setCancelled(true);
+                }
+            }
+        }catch (Exception e){
+            if(ConfigFile.debug){
+                Main.getInstance().getLogger().warning("| Generated an exception [" + e.getCause() + "]");
             }
         }
     }
     @EventHandler
     public void onInteract(PlayerInteractEntityEvent event) {
         if(!enabled || !Main.getInstance().enabled){ return; }
-        org.bukkit.entity.Player player = event.getPlayer();
-        PlayerData data = Main.getInstance().getDataManager().getDataPlayer(player);
-        if(player.getEyeLocation().distance(event.getRightClicked().getLocation()) > 6){
-            flag(player,1);
-            if(ConfigFile.interaction_intercept_enabled) {
-                event.setCancelled(true);
+        try {
+            org.bukkit.entity.Player player = event.getPlayer();
+            PlayerData data = Main.getInstance().getDataManager().getDataPlayer(player);
+            if (player.getEyeLocation().distance(event.getRightClicked().getLocation()) > 6) {
+                flag(player, 1);
+                if (ConfigFile.interaction_intercept_enabled) {
+                    event.setCancelled(true);
+                }
+            }
+        } catch (Exception e){
+            if(ConfigFile.debug){
+                Main.getInstance().getLogger().warning("| Generated an exception [" + e.getCause() + "]");
             }
         }
     }

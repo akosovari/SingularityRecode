@@ -20,78 +20,83 @@ public class OtherEvents implements Listener {
     public void onJoin(PlayerJoinEvent event) {
         org.bukkit.entity.Player player = event.getPlayer();
         Main.getInstance().getDataManager().add(player);
-        PlayerData data = Main.getInstance().getDataManager().getDataPlayer(player.getPlayer());
-        data.USP_X = data.SetBackX = data.SlimeX = data.TBSpeedX = (float) player.getLocation().getX();
-        data.USP_Y = data.SetBackY = (float) player.getLocation().getY();
-        data.USP_Z = data.SetBackZ = data.SlimeZ = data.TBSpeedZ = (float) player.getLocation().getZ();
-        data.VTMlast_deltaY = data.deltaY;
+        try {
+            PlayerData data = Main.getInstance().getDataManager().getDataPlayer(player.getPlayer());
+            data.USP_X = data.SetBackX = data.SlimeX = data.TBSpeedX = (float) player.getLocation().getX();
+            data.USP_Y = data.SetBackY = (float) player.getLocation().getY();
+            data.USP_Z = data.SetBackZ = data.SlimeZ = data.TBSpeedZ = (float) player.getLocation().getZ();
+            data.VTMlast_deltaY = data.deltaY;
 
 
-        data.elyChunkX = data.elyX = player.getLocation().getX();
-        data.elyChunkY = data.elyY =player.getLocation().getY();
-        data.elyChunkZ = data.elyZ = player.getLocation().getZ();
-        data.elyLastdeltaXZ = 0;
-        data.elyLastDeltaY = 0;
+            data.elyChunkX = data.elyX = player.getLocation().getX();
+            data.elyChunkY = data.elyY = player.getLocation().getY();
+            data.elyChunkZ = data.elyZ = player.getLocation().getZ();
+            data.elyLastdeltaXZ = 0;
+            data.elyLastDeltaY = 0;
 
-        player.getScheduler().runAtFixedRate(Main.getInstance(), scheduledTask -> {
-            // PlayerSpeed
-            if(data.last_location != null && player.getLocation().getWorld() == data.last_location.getWorld()){
-                if(player.getLocation() != data.last_location){
-                    Float delta_time = (float) (System.currentTimeMillis() - data.last_check)/1000;
-                    data.speed =  (double) player.getLocation().distance(data.last_location)/delta_time;
+            player.getScheduler().runAtFixedRate(Main.getInstance(), scheduledTask -> {
+                // PlayerSpeed
+                if (data.last_location != null && player.getLocation().getWorld() == data.last_location.getWorld()) {
+                    if (player.getLocation() != data.last_location) {
+                        Float delta_time = (float) (System.currentTimeMillis() - data.last_check) / 1000;
+                        data.speed = (double) player.getLocation().distance(data.last_location) / delta_time;
+                    }
                 }
-            }
-            data.last_check = System.currentTimeMillis();
-            data.last_location = player.getLocation();
-        }, null, 1L, 1L);
-
+                data.last_check = System.currentTimeMillis();
+                data.last_location = player.getLocation();
+            }, null, 1L, 1L);
+        } catch (Exception e){}
     }
     @EventHandler(priority = EventPriority.LOWEST)
     public void respawn(PlayerRespawnEvent event) {
         org.bukkit.entity.Player player = event.getPlayer();
         PlayerData data = Main.getInstance().getDataManager().getDataPlayer(player.getPlayer());
-        data.USP_X = data.SetBackX = data.SlimeX = data.TBSpeedX = (float) player.getLocation().getX();
-        data.USP_Y = data.SetBackY = (float) player.getLocation().getY();
-        data.USP_Z = data.SetBackZ = data.SlimeZ = data.TBSpeedZ = (float) player.getLocation().getZ();
-        data.VTMlast_deltaY = data.deltaY;
+        try {
+            data.USP_X = data.SetBackX = data.SlimeX = data.TBSpeedX = (float) player.getLocation().getX();
+            data.USP_Y = data.SetBackY = (float) player.getLocation().getY();
+            data.USP_Z = data.SetBackZ = data.SlimeZ = data.TBSpeedZ = (float) player.getLocation().getZ();
+            data.VTMlast_deltaY = data.deltaY;
 
 
-        data.elyChunkX = data.elyX = player.getLocation().getX();
-        data.elyChunkY = data.elyY =player.getLocation().getY();
-        data.elyChunkZ = data.elyZ = player.getLocation().getZ();
-        data.elyLastdeltaXZ = 0;
-        data.elyLastDeltaY = 0;
+            data.elyChunkX = data.elyX = player.getLocation().getX();
+            data.elyChunkY = data.elyY = player.getLocation().getY();
+            data.elyChunkZ = data.elyZ = player.getLocation().getZ();
+            data.elyLastdeltaXZ = 0;
+            data.elyLastDeltaY = 0;
+        }catch (Exception e){}
     }
     @EventHandler(priority = EventPriority.LOWEST)
     public void onRiptide(PlayerRiptideEvent event) {
         org.bukkit.entity.Player player = event.getPlayer();
         PlayerData data = Main.getInstance().getDataManager().getDataPlayer(player.getPlayer());
         Main.getInstance().getDataManager().add(player);
-        data.usingRiptide = true;
-        data.TBSpeedX = (float) event.getPlayer().getLocation().getX();
-        data.TBSpeedZ= (float) event.getPlayer().getLocation().getZ();
-        data.elyChunkX = data.elyX = player.getLocation().getX();
-        data.elyChunkY = data.elyY =player.getLocation().getY();
-        data.elyChunkZ = data.elyZ = player.getLocation().getZ();
-        data.elyLastdeltaXZ = 0;
-        data.elyLastDeltaY = 0;
+        try {
+            data.usingRiptide = true;
+            data.TBSpeedX = (float) event.getPlayer().getLocation().getX();
+            data.TBSpeedZ = (float) event.getPlayer().getLocation().getZ();
+            data.elyChunkX = data.elyX = player.getLocation().getX();
+            data.elyChunkY = data.elyY = player.getLocation().getY();
+            data.elyChunkZ = data.elyZ = player.getLocation().getZ();
+            data.elyLastdeltaXZ = 0;
+            data.elyLastDeltaY = 0;
+        } catch (Exception e){}
     }
     @EventHandler(priority = EventPriority.LOWEST)
     public void onTeleport(PlayerTeleportEvent event) {
         org.bukkit.entity.Player player = event.getPlayer();
         PlayerData data = Main.getInstance().getDataManager().getDataPlayer(player.getPlayer());
-
-        data.teleportedByPlugin = event.getCause() == PlayerTeleportEvent.TeleportCause.PLUGIN;
-        data.lastTeleport = System.currentTimeMillis();
-        data.USP_X = data.SetBackX = data.SlimeX = data.TBSpeedX = (float) event.getTo().getX();
-        data.USP_Y = data.SetBackY = (float) event.getTo().getY();
-        data.USP_Z = data.SetBackZ = data.SlimeZ = data.TBSpeedZ = (float) event.getTo().getZ();
-        //TimeBased speed
-        data.TBSpeedX = (float) event.getTo().getX();
-        data.TBSpeedZ= (float) event.getTo().getZ();
-        data.TimeBasedSpeed = System.currentTimeMillis();
-        //DeltaY
-        data.VTMlast_deltaY = data.deltaY;
-
+        try {
+            data.teleportedByPlugin = event.getCause() == PlayerTeleportEvent.TeleportCause.PLUGIN;
+            data.lastTeleport = System.currentTimeMillis();
+            data.USP_X = data.SetBackX = data.SlimeX = data.TBSpeedX = (float) event.getTo().getX();
+            data.USP_Y = data.SetBackY = (float) event.getTo().getY();
+            data.USP_Z = data.SetBackZ = data.SlimeZ = data.TBSpeedZ = (float) event.getTo().getZ();
+            //TimeBased speed
+            data.TBSpeedX = (float) event.getTo().getX();
+            data.TBSpeedZ = (float) event.getTo().getZ();
+            data.TimeBasedSpeed = System.currentTimeMillis();
+            //DeltaY
+            data.VTMlast_deltaY = data.deltaY;
+        } catch (Exception e){}
     }
 }
